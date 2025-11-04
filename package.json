@@ -1,0 +1,22 @@
+{
+  "name": "@yamatomo/web-app-tools",
+  "private": true,
+  "scripts": {
+    "prepare": "pnpm build",
+    "build": "pnpm -F='./packages/*' build",
+    "test": "pnpm -F='./packages/*' --parallel test",
+    "lint": "biome ci",
+    "lint:fix": "biome check --write",
+    "typecheck": "pnpm -F='./packages/*' --parallel typecheck"
+  },
+  "packageManager": "pnpm@10.20.0",
+  "devDependencies": {
+    "@biomejs/biome": "^2.3.4",
+    "@types/node": "^24.10.0",
+    "@vitest/coverage-v8": "4.0.8",
+    "tsdown": "^0.16.1",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.8"
+  }
+}

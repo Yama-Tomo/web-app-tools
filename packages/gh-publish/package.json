@@ -1,0 +1,44 @@
+{
+  "name": "@yamatomo/gh-publish",
+  "version": "0.0.0",
+  "description": "A simple CLI tool to publish npm package to GitHub Releases",
+  "keywords": [],
+  "license": "MIT",
+  "author": "Yama-Tomo",
+  "bin": {
+    "gh-pack": "./dist/gh-pack.cjs",
+    "gh-publish": "./dist/gh-publish.cjs"
+  },
+  "files": [
+    "./dist",
+    "./README.md"
+  ],
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.mts",
+  "main": "./dist/index.cjs",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    }
+  },
+  "scripts": {
+    "build": "tsdown src/gh-* src/index.ts --format esm --format cjs",
+    "gh-pack": "tsx ./src/gh-pack.ts",
+    "gh-publish": "tsx ./src/gh-publish.ts",
+    "test": "vitest",
+    "typecheck": "tsc"
+  },
+  "devDependencies": {
+    "@manypkg/get-packages": "^3.1.0",
+    "@octokit/plugin-throttling": "^11.0.3",
+    "@octokit/rest": "^22.0.1",
+    "commander": "^14.0.2"
+  }
+}

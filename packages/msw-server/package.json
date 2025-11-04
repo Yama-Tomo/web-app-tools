@@ -1,0 +1,49 @@
+{
+  "name": "@yamatomo/msw-server",
+  "version": "0.0.0",
+  "description": "Utilities to run MSW as a standalone server",
+  "keywords": [],
+  "license": "MIT",
+  "author": "Yama-Tomo",
+  "files": [
+    "./dist",
+    "./README.md"
+  ],
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.mts",
+  "main": "./dist/index.cjs",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    }
+  },
+  "scripts": {
+    "build": "tsdown --format esm --format cjs",
+    "test": "vitest",
+    "typecheck": "tsc"
+  },
+  "engines": {
+    "node": ">=22.4.0"
+  },
+  "peerDependencies": {
+    "@types/ws": "^8.18.1",
+    "msw": ">=2"
+  },
+  "peerDependenciesMeta": {
+    "@types/ws": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "ws": "8.18.3",
+    "@yamatomo/gh-publish": "workspace:*",
+    "@yamatomo/internal-utils": "workspace:*"
+  }
+}
