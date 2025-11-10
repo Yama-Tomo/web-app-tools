@@ -26,6 +26,7 @@
   },
   "scripts": {
     "build": "tsdown --format esm --format cjs",
+    "gh-publish": "gh-publish",
     "test": "pnpm -F='./example' test",
     "typecheck": "tsc"
   },
