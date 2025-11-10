@@ -8,6 +8,7 @@ import * as utils from './utils.ts'
 
 vi.spyOn(console, 'log').mockImplementation(() => undefined)
 vi.spyOn(console, 'warn').mockImplementation(() => undefined)
+vi.spyOn(process, 'chdir').mockImplementation(() => undefined)
 
 vi.mock('node:fs')
 vi.mock('node:child_process')
@@ -60,6 +61,7 @@ describe('pack', () => {
 
   it('should pack the package successfully', async () => {
     expect(await pack('test.tgz')).toBe(`${process.cwd()}/test.tgz`)
+    expect(vi.mocked(process).chdir).toHaveBeenCalledWith('/tmp/gh-pack-xxxx/package')
   })
 
   it('should warn if no packages are found', async () => {
