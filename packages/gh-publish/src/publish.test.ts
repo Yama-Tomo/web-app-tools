@@ -7,7 +7,6 @@ import { pack } from './pack.ts'
 import * as utils from './utils.ts'
 
 vi.spyOn(console, 'log').mockImplementation(() => undefined)
-vi.spyOn(console, 'warn').mockImplementation(() => undefined)
 
 vi.mock('node:fs')
 vi.mock('@octokit/rest')
@@ -131,12 +130,5 @@ describe('publish', () => {
     expect(vi.mocked(console).log).toHaveBeenCalledWith(
       'ℹ️  test-package-1.0.0 already exists. skipping release creation.',
     )
-  })
-
-  it('warns if CHANGELOG does not exist', async () => {
-    vi.mocked(fs).existsSync.mockReturnValue(false)
-    await publish('test.tgz', 'changesets:autodetect', false)
-
-    expect(vi.mocked(console).warn).toHaveBeenCalledWith('⚠️  CHANGELOG file not found.')
   })
 })

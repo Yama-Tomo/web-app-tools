@@ -1,4 +1,5 @@
 import { execSync } from 'node:child_process'
+import fs from 'node:fs'
 
 import type { Package } from '@manypkg/get-packages'
 
@@ -33,4 +34,27 @@ export const RELEASE_NOTES = {
 
 export const getPackageJsonContent = async (jsonFile: string): Promise<Package['packageJson']> => {
   return (await import(jsonFile, { with: { type: 'json' } })).default
+}
+
+export const extractChangesetsChangelogContent = (version: string) => {
+  const filePath = 'CHANGELOG.md'
+
+  if (!fs.existsSync(filePath)) {
+    console.warn(`⚠️  CHANGELOG file not found.`)
+    return ''
+  }
+
+  const content = fs.readFileSync(filePath, 'utf8')
+  const regex = new RegExp(
+    // 1. Start: (beginning of string ## or newline ##) + version number
+    `(?:^##|\\n##)\\s*${version}[^\\n]*\\n` +
+      // 2. Content: capture all characters non-greedily (group 1)
+      //    (including ### Patch Changes and blank lines)
+      `([\\s\\S]*?)` +
+      // 3. End: (newline followed by next version header or end of file)
+      `(?=(?:\\n##\\s*\\d+\\.)|$)`,
+    'g',
+  )
+
+  return regex.exec(content)?.at(1)?.trim() || ''
 }

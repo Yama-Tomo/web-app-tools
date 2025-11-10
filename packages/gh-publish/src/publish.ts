@@ -4,7 +4,13 @@ import { throttling } from '@octokit/plugin-throttling'
 import { Octokit } from '@octokit/rest'
 
 import { pack } from './pack.ts'
-import { createReleaseName, getGitInfo, getPackageJsonContent, RELEASE_NOTES } from './utils.ts'
+import {
+  createReleaseName,
+  extractChangesetsChangelogContent,
+  getGitInfo,
+  getPackageJsonContent,
+  RELEASE_NOTES,
+} from './utils.ts'
 
 const baseOctokit = Octokit.plugin(throttling)
 
@@ -32,19 +38,6 @@ const getOctokit = (params: ConstructorParameters<typeof baseOctokit>[0]) => {
       },
     },
   })
-}
-
-const extractChangesetsChangelogContent = (version: string) => {
-  const filePath = 'CHANGELOG.md'
-
-  if (!fs.existsSync(filePath)) {
-    console.warn(`⚠️  CHANGELOG file not found.`)
-    return ''
-  }
-
-  const content = fs.readFileSync(filePath, 'utf8')
-  const regex = new RegExp(`^##\\s*${version}[^\n]*\n([\\s\\S]*?)(?=^##\\s*\\d+\\.|\\Z)`, 'gm')
-  return regex.exec(content)?.at(1)?.trim() || ''
 }
 
 export const publish = async (tarName: string, releaseNote: string, draft: boolean) => {
