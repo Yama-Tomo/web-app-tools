@@ -1,5 +1,11 @@
 # @yamatomo/gh-publish
 
+## 0.1.2
+
+### Patch Changes
+
+- [#8](https://github.com/Yama-Tomo/web-app-tools/pull/8) [`40d30a1`](https://github.com/Yama-Tomo/web-app-tools/commit/40d30a19f83ce0d32035c9d3aed0bad16dfaf9de) Thanks [@Yama-Tomo](https://github.com/Yama-Tomo)! - fix: Ensure rewritten package.json is included in pack
+
 ## 0.1.1
 
 ### Patch Changes
