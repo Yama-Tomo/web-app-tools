@@ -46,7 +46,8 @@ const _pack = (outputTarFile: string, options?: ExecSyncOptions) => {
     throw new Error('Multiple package tarballs found after packing.')
   }
 
-  fs.renameSync(tarFile, outputTarFile)
+  fs.copyFileSync(tarFile, outputTarFile)
+  fs.rmSync(tarFile)
 
   return stdout
 }
@@ -80,7 +81,7 @@ const rewriteDepsVersionsToGHReleaseUrl = async (
   const workingDir = path.join(tempDir, 'package')
   const packageJsonFile = path.join(workingDir, 'package.json')
 
-  execSync(`cd ${workingDir}`)
+  process.chdir(workingDir)
 
   const packageJson = await getPackageJsonContent(packageJsonFile)
   if (packageJson.dependencies) {
@@ -92,7 +93,7 @@ const rewriteDepsVersionsToGHReleaseUrl = async (
   fs.writeFileSync(packageJsonFile, `${JSON.stringify(packageJson, null, 2)}\n`)
   _pack(outputTarFile, { stdio: 'ignore' })
 
-  execSync(`cd ${cwd}`)
+  process.chdir(cwd)
 
   fs.rmSync(tempDir, { recursive: true, force: true })
 }
