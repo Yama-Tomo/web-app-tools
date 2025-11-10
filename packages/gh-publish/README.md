@@ -72,7 +72,7 @@ jobs:
         run: |
           pnpm build
           echo '${{steps.changesets.outputs.publishedPackages}}' | jq -c '.[]' | while read -r package; do
-            pnpm --filter=$(echo $package | jq -r '.name') gh-publish --note="changesets:autodetect"
+            pnpm --filter=$(echo $package | jq -r '.name') gh-publish --notes="changesets:autodetect"
           done
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
