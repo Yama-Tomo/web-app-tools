@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+
+if [ ! -z "$(which mise)" ]; then
+  export PATH="$HOME/.local/share/mise/shims:$PATH"
+fi
+
+script_dir=$(cd "$(dirname "$0")" && pwd)
+
+cd $script_dir/../
+bun i
+pnpm test

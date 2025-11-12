@@ -13,6 +13,7 @@ jobs:
         with:
           node-version: 22
           cache: 'pnpm'
+      - uses: jdx/mise-action@be3be2260bc02bc3fbf94c5e2fed8b7964baf074 # v3.4.0
       - name: prepare
         run: |
           pnpm i

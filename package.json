@@ -3,11 +3,11 @@
   "private": true,
   "scripts": {
     "prepare": "pnpm build",
-    "build": "pnpm -F='./packages/*' build",
-    "test": "pnpm -F='./packages/*' --parallel test",
+    "build": "pnpm --aggregate-output -F='./packages/*' build",
+    "test": "pnpm --aggregate-output -F='./packages/*' --parallel test",
     "lint": "biome ci",
     "lint:fix": "biome check --write",
-    "typecheck": "pnpm -F='./packages/*' --parallel typecheck"
+    "typecheck": "pnpm --aggregate-output -F='./packages/*' --parallel typecheck"
   },
   "packageManager": "pnpm@10.20.0",
   "devDependencies": {
@@ -20,5 +20,10 @@
     "tsx": "^4.20.6",
     "typescript": "^5.9.3",
     "vitest": "^4.0.8"
+  },
+  "pnpm": {
+    "overrides": {
+      "@types/node": "^24.10.0"
+    }
   }
 }

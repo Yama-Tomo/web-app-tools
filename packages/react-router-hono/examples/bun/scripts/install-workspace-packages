@@ -1,0 +1,28 @@
+#!/usr/bin/env sh
+
+set -eu
+
+script_dir=$(cd "$(dirname "$0")" && pwd)
+repo_root_dir="${script_dir}/../../../../../"
+
+for pkg in react-router-hono msw-server playwright
+do
+  (
+    package_dir="${script_dir}/../node_modules/@yamatomo/${pkg}"
+    mkdir -p $package_dir
+    cd $package_dir
+
+    items=$(cat "${repo_root_dir}/packages/${pkg}/package.json" | jq -r '.files[]')
+    items="${items}\npackage.json"
+
+    for item in $(echo "${items}")
+    do
+      src="${repo_root_dir}/packages/${pkg}/${item}"
+
+      if [ -e "${src}" ]; then
+        echo "Install file: $(realpath ${src})"
+        cp -a "${src}" .
+      fi
+    done
+  )
+done

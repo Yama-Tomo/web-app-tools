@@ -30,6 +30,9 @@
   "scripts": {
     "build": "tsdown 'src/**/index.ts' --external='virtual:react-router/server-build' --external='msw/node' --external='vite' --dts --format esm ",
     "gh-publish": "gh-publish",
+    "test": "pnpm '/test:.*/'",
+    "test:pnpm": "pnpm -F='./examples/**' test",
+    "test:bun": "./examples/bun/scripts/run-test",
     "typecheck": "tsc"
   },
   "dependencies": {
