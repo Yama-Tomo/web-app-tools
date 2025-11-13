@@ -6,14 +6,15 @@ interface MswParams {
 }
 
 type Store = {
-  startApp?: (appServerPort: number) => Promise<[ChildProcess, AppEnv]>
+  startApp?: (baseUrlPort: number) => Promise<[ChildProcess, AppEnv]>
   resolveMswParams?: (env: AppEnv) => MswParams
   isFixtureConfigured?: boolean
 }
 
 export const store: Store = {}
 
-export const fixtureConfig = (params: Store) => {
+/** @deprecated Use `defineConfig` instead. */
+export const fixtureConfig = (params: Omit<Store, 'isFixtureConfigured'>) => {
   store.startApp = params.startApp
   store.resolveMswParams = params.resolveMswParams
   store.isFixtureConfigured = true

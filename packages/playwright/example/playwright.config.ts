@@ -1,7 +1,6 @@
 import { spawn } from 'node:child_process'
 
-import { defineConfig, devices } from '@playwright/test'
-import { type AppEnv, fixtureConfig, getPort } from '@yamatomo/playwright'
+import { type AppEnv, defineConfig, devices, getPort } from '@yamatomo/playwright'
 
 declare module '@yamatomo/playwright' {
   interface AppEnv {
@@ -12,23 +11,6 @@ declare module '@yamatomo/playwright' {
     api: (path: string) => string
   }
 }
-
-fixtureConfig({
-  startApp: async (appPort) => {
-    const appEnv: AppEnv = {
-      BACKEND_API_HOST: `http://backend-api.localhost:${await getPort()}`,
-    }
-
-    return [
-      spawn('pnpm', ['dev', `--port=${appPort}`], { env: { ...process.env, ...appEnv } }),
-      appEnv,
-    ]
-  },
-  resolveMswParams: (appEnv) => ({
-    port: new URL(appEnv.BACKEND_API_HOST).port,
-    api: (path) => new URL(path, appEnv.BACKEND_API_HOST).toString(),
-  }),
-})
 
 export default defineConfig({
   testDir: './tests',
@@ -46,4 +28,16 @@ export default defineConfig({
       use: { ...devices['Desktop Chrome'] },
     },
   ],
+  startApp: async (baseUrlPort) => {
+    const env = {
+      ...process.env,
+      BACKEND_API_HOST: `http://backend-api.localhost:${await getPort()}`,
+    } satisfies AppEnv
+
+    return [spawn('pnpm', ['dev', `--port=${baseUrlPort}`], { env }), env]
+  },
+  resolveMswParams: (appEnv) => ({
+    port: new URL(appEnv.BACKEND_API_HOST).port,
+    api: (path) => new URL(path, appEnv.BACKEND_API_HOST).toString(),
+  }),
 })
