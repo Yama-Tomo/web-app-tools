@@ -1,5 +1,15 @@
 # @yamatomo/playwright
 
+## 0.2.0
+
+### Minor Changes
+
+- [#12](https://github.com/Yama-Tomo/web-app-tools/pull/12) [`0aea5a9`](https://github.com/Yama-Tomo/web-app-tools/commit/0aea5a96fbee19f1008ccf27ff1459e20f408db8) Thanks [@Yama-Tomo](https://github.com/Yama-Tomo)! - feat: Allow fixture settings to be configured via defineConfig
+
+### Patch Changes
+
+- [#10](https://github.com/Yama-Tomo/web-app-tools/pull/10) [`f7cb300`](https://github.com/Yama-Tomo/web-app-tools/commit/f7cb300aca5b3f7ec24a7081336acb131655ab1e) Thanks [@Yama-Tomo](https://github.com/Yama-Tomo)! - fix: Correct subprocess termination
+
 ## 0.1.1
 
 ### Patch Changes
