@@ -1,9 +1,12 @@
+import type { ChildProcess } from 'node:child_process'
+
 import { test as base } from '@playwright/test'
 import { waitPort } from '@yamatomo/internal-utils'
 import { createServer } from '@yamatomo/msw-server'
 import { setupServer } from 'msw/node'
 
 import { type AppEnv, type MswParams, store } from './fixtureConfig'
+import { getDescendantPids } from './getDescendantPids.ts'
 
 const startApp = async (baseURL: string) => {
   if (!store.startApp) throw new Error('startApp is not defined.')
@@ -13,6 +16,17 @@ const startApp = async (baseURL: string) => {
   await waitPort(appPort)
 
   return { process, env }
+}
+
+const killAppProcess = (appProcess: ChildProcess) => {
+  if (!appProcess.pid) throw new Error('App process PID is unknown.')
+
+  getDescendantPids(appProcess.pid)
+    .reverse()
+    .forEach((pid) => {
+      process.kill(pid)
+    })
+  appProcess.kill('SIGTERM')
 }
 
 const startMswServer = async (appEnv: AppEnv) => {
@@ -37,13 +51,9 @@ const test = base.extend<TestFixtureType, WorkerFixtureType>({
 
       const app = await startApp(baseURL)
 
-      process.on('exit', () => {
-        app.process.kill('SIGINT')
-      })
-
       await use(app)
 
-      app.process.kill('SIGINT')
+      killAppProcess(app.process)
     },
     { scope: 'worker' },
   ],
