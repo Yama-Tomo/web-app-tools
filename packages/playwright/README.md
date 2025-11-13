@@ -8,10 +8,8 @@ Fixture configuration to `playwright.config.ts`
 
 ```typescript
 // playwright.config.ts
-import { defineConfig } from '@playwright/test'
-
 import { spawn } from 'node:child_process'
-import { type AppEnv, fixtureConfig, getPort } from '@yamatomo/playwright'
+import { type AppEnv, defineConfig, devices, getPort } from '@yamatomo/playwright'
 
 declare module '@yamatomo/playwright' {
   interface AppEnv {
@@ -23,29 +21,24 @@ declare module '@yamatomo/playwright' {
   }
 }
 
-fixtureConfig({
-  startApp: async (appPort) => {
-    const appEnv: AppEnv = {
-      BACKEND_API_HOST: `http://backend-api.localhost:${await getPort()}`,
-    }
-
-    return [
-      spawn('/your/app/start/command', ['...options'], { env: { ...process.env, ...appEnv } }),
-      appEnv,
-    ]
-  },
-  resolveMswParams: (appEnv) => ({
-    port: new URL(appEnv.BACKEND_API_HOST).port,
-    api: (path) => new URL(path, appEnv.BACKEND_API_HOST).toString(),
-  }),
-})
-
 export default defineConfig({
   // ...
   use: {
     baseURL: `http://localhost:${await getPort()}`, // Setting the baseURL is also required
     // ...
   },
+  startApp: async (baseUrlPort) => {
+    const env = {
+      ...process.env,
+      BACKEND_API_HOST: `http://backend-api.localhost:${await getPort()}`,
+    } satisfies AppEnv
+
+    return [spawn('/your/app/start/command', ['...options'], { env }), env]
+  },
+  resolveMswParams: (appEnv) => ({
+    port: new URL(appEnv.BACKEND_API_HOST).port,
+    api: (path) => new URL(path, appEnv.BACKEND_API_HOST).toString(),
+  }),
 })
 ```
 

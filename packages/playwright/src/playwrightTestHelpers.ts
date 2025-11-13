@@ -1,19 +1,23 @@
 import type { ChildProcess } from 'node:child_process'
 
-import { test as base } from '@playwright/test'
+import {
+  test as base,
+  defineConfig as baseDefineConfig,
+  type PlaywrightTestConfig,
+} from '@playwright/test'
 import { waitPort } from '@yamatomo/internal-utils'
 import { createServer } from '@yamatomo/msw-server'
 import { setupServer } from 'msw/node'
 
-import { type AppEnv, type MswParams, store } from './fixtureConfig'
+import { type AppEnv, fixtureConfig, type MswParams, store } from './fixtureConfig'
 import { getDescendantPids } from './getDescendantPids.ts'
 
 const startApp = async (baseURL: string) => {
   if (!store.startApp) throw new Error('startApp is not defined.')
 
-  const appPort = Number(new URL(baseURL).port)
-  const [process, env] = await store.startApp(appPort)
-  await waitPort(appPort)
+  const baseUrlPort = Number(new URL(baseURL).port)
+  const [process, env] = await store.startApp(baseUrlPort)
+  await waitPort(baseUrlPort)
 
   return { process, env }
 }
@@ -69,5 +73,13 @@ const test = base.extend<TestFixtureType, WorkerFixtureType>({
   ],
 })
 
+type FixtureConfigParams = Parameters<typeof fixtureConfig>[0]
+const defineConfig = (config: PlaywrightTestConfig & FixtureConfigParams) => {
+  const { startApp, resolveMswParams, ...playwrightConfig } = config
+
+  fixtureConfig({ startApp, resolveMswParams })
+  return baseDefineConfig(playwrightConfig)
+}
+
 export * from '@playwright/test'
-export { test }
+export { test, defineConfig }
