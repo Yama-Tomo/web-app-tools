@@ -1,0 +1,49 @@
+{
+  "name": "@yamatomo/react-router-hono",
+  "version": "0.0.0",
+  "description": "Integration React Router and Hono",
+  "keywords": [],
+  "license": "MIT",
+  "author": "Yama-Tomo",
+  "files": [
+    "./dist",
+    "./README.md"
+  ],
+  "type": "module",
+  "exports": {
+    "./bun": {
+      "types": "./dist/bun/index.d.mts",
+      "default": "./dist/bun/index.mjs"
+    },
+    "./node": {
+      "types": "./dist/node/index.d.mts",
+      "default": "./dist/node/index.mjs"
+    },
+    "./types": {
+      "types": "./dist/types/index.d.mts"
+    },
+    "./vite": {
+      "types": "./dist/vite/index.d.mts",
+      "default": "./dist/vite/index.mjs"
+    }
+  },
+  "scripts": {
+    "build": "tsdown 'src/**/index.ts' --external='virtual:react-router/server-build' --external='msw/node' --external='vite' --dts --format esm ",
+    "gh-publish": "gh-publish",
+    "test": "pnpm '/test:.*/'",
+    "test:pnpm": "pnpm -F='./examples/**' test",
+    "test:bun": "./examples/bun/scripts/run-test",
+    "typecheck": "tsc"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.19.6",
+    "hono": "^4.10.4",
+    "hono-react-router-adapter": "^0.6.5"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.3.2",
+    "@yamatomo/gh-publish": "workspace:*",
+    "msw": "^2.12.1",
+    "vite": "^7.2.2"
+  }
+}

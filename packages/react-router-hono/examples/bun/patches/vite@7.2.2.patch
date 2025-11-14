@@ -1,0 +1,20 @@
+diff --git a/dist/node/chunks/config.js b/dist/node/chunks/config.js
+index bfc5dfa8bb4a25e325e894131349e732708b787d..fa2ddcd09c10c56be12d9ddf5115e576839caebd 100644
+--- a/dist/node/chunks/config.js
++++ b/dist/node/chunks/config.js
+@@ -26120,7 +26120,14 @@ async function _createServer(inlineConfig = {}, options$1) {
+ 			} else server.config.logger.warn("No URL available to open in browser");
+ 		},
+ 		async close() {
++           const _closeServer = async () => {
++             try {
++               await Promise.race([closeServer(), new Promise((_, reject) => setTimeout(reject, 150))])
++             } catch {
++               await closeServer()
++             }
++           }
++			if (!closeServerPromise) closeServerPromise = _closeServer();
+-			if (!closeServerPromise) closeServerPromise = closeServer();
+ 			return closeServerPromise;
+ 		},
+ 		printUrls() {
