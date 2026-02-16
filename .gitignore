@@ -14,3 +14,10 @@ dist-ssr
 package.tgz
 
 coverage
+
+*storybook.log
+storybook-static
+
+## Panda
+styled-system
+styled-system-studio
