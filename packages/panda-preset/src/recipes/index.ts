@@ -2,6 +2,7 @@ import { attachedTextField } from './attachedTextField'
 import { button } from './button'
 import { checkbox } from './checkbox'
 import { field } from './field'
+import { iconButton } from './iconButton'
 import { indicator } from './indicator'
 import { input } from './input'
 import { numberField } from './numberField'
@@ -16,6 +17,7 @@ export const recipes = {
   button,
   checkbox,
   field,
+  iconButton,
   indicator,
   input,
   numberField,
