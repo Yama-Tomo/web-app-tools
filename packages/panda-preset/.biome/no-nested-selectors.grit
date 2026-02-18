@@ -1,0 +1,6 @@
+language js
+
+`$key: $value` where {
+  $key <: r"^['\"\`]\s*&.*",
+  register_diagnostic(span=$key, message="A selector-like string was detected. Please split it into slots and define the styles.", severity="warning")
+}
