@@ -1,7 +1,7 @@
 import { defineSlotRecipe, type SlotRecipeConfig } from '@pandacss/dev'
 
-import { inputConfig } from '~/recipes/input'
-import { className, type SlotVariants } from '~/utils'
+import { inputConfig } from '#recipes/input'
+import { className, type SlotVariants } from '#utils'
 
 export const radioConfig = () => {
   const slots = ['label', 'control', 'indicator'] as const

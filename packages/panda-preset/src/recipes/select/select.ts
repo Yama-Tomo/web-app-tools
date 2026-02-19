@@ -1,9 +1,9 @@
 import { defineSlotRecipe, type SlotRecipeConfig } from '@pandacss/dev'
 
-import { indicatorConfig } from '~/recipes/indicator'
-import { inputConfig } from '~/recipes/input'
-import { scrollArrowConfig } from '~/recipes/scrollArrow'
-import { className, type SlotVariants } from '~/utils'
+import { indicatorConfig } from '#recipes/indicator'
+import { inputConfig } from '#recipes/input'
+import { scrollArrowConfig } from '#recipes/scrollArrow'
+import { className, type SlotVariants } from '#utils'
 
 const selectConfig = () => {
   const slots = [

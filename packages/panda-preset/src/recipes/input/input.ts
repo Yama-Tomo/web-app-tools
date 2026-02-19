@@ -1,6 +1,6 @@
 import { defineRecipe, type RecipeConfig } from '@pandacss/dev'
 
-import { className, type Variants } from '~/utils'
+import { className, type Variants } from '#utils'
 
 export const inputConfig = () => {
   const outlineColor =
