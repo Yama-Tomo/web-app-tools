@@ -1,6 +1,7 @@
 import { definePreset } from '@pandacss/dev'
 
 import { conditions } from './conditions'
+import { keyframes } from './keyframes.ts'
 import { recipes } from './recipes'
 import { semanticTokens } from './semanticTokens'
 
@@ -11,10 +12,11 @@ export const preset = definePreset({
   name: 'yamatomo-panda-css-preset',
   theme: {
     extend: {
+      keyframes,
       recipes,
       semanticTokens,
     },
   },
 })
 
-export const presetValues = { conditions, recipes, semanticTokens }
+export const presetValues = { conditions, keyframes, recipes, semanticTokens }
