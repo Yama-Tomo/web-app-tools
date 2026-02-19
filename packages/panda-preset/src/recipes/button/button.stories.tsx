@@ -12,7 +12,7 @@ const meta = preview.meta({
 })
 
 const variants = ['solid', 'outline', 'ghost'] as const
-const sizes = ['xs', 'sm', 'md', 'lg'] as const
+const sizes = ['xs', 'sm', 'md', 'lg', 'xl'] as const
 
 export const Basic = meta.story()
 
@@ -44,6 +44,7 @@ export const Sizes = meta.story({
             { className: button({ size: sizes[1] }) },
             { className: button({ size: sizes[2] }) },
             { className: button({ size: sizes[3] }) },
+            { className: button({ size: sizes[4] }) },
           ] satisfies Args[],
         },
       ],
