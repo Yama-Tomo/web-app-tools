@@ -1,6 +1,6 @@
 export const colors = {
   bg: {
-    DEFAULT: { value: { _dark: 'white', base: 'black' } },
+    DEFAULT: { value: { _dark: 'black', base: 'white' } },
     emphasized: { value: { _dark: '{colors.gray.800}', base: '{colors.gray.200}' } },
     error: { value: { _dark: '{colors.red.950}', base: '{colors.red.50}' } },
     info: { value: { _dark: '{colors.blue.950}', base: '{colors.blue.50}' } },
