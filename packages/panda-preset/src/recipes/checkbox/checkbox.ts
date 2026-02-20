@@ -1,8 +1,8 @@
 import { defineSlotRecipe, type SlotRecipeConfig } from '@pandacss/dev'
 
-import { indicatorConfig } from '~/recipes/indicator'
-import { inputConfig } from '~/recipes/input'
-import { className, type SlotVariants } from '~/utils'
+import { indicatorConfig } from '#recipes/indicator'
+import { inputConfig } from '#recipes/input'
+import { className, type SlotVariants } from '#utils'
 
 export const checkboxConfig = () => {
   const slots = ['root', 'label', 'control', 'indicator'] as const

@@ -1,8 +1,8 @@
 import { defineSlotRecipe, type SlotRecipeConfig } from '@pandacss/dev'
 
-import { indicatorConfig } from '~/recipes/indicator'
-import { textFieldConfig } from '~/recipes/textField'
-import { className, type SlotVariants } from '~/utils'
+import { indicatorConfig } from '#recipes/indicator'
+import { textFieldConfig } from '#recipes/textField'
+import { className, type SlotVariants } from '#utils'
 
 export const numberFieldConfig = () => {
   const { base, variants: baseVariants, defaultVariants } = textFieldConfig()

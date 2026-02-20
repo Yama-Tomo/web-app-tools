@@ -17,7 +17,10 @@
     "#panda/*": {
       "types": "./styled-system/*/index.d.ts",
       "default": "./styled-system/*/index.mjs"
-    }
+    },
+    "#utils": "./src/utils/index.ts",
+    "#recipes/*": "./src/recipes/*/index.ts",
+    "#*": "./src/*"
   },
   "exports": {
     ".": {

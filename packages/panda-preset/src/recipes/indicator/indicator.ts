@@ -1,6 +1,6 @@
 import { defineRecipe, type RecipeConfig } from '@pandacss/dev'
 
-import { className } from '~/utils'
+import { className } from '#utils'
 
 export const indicatorConfig = () => {
   const indicatorSize = '1em'

@@ -1,7 +1,7 @@
 import { defineRecipe, type RecipeConfig } from '@pandacss/dev'
 
-import { indicatorConfig } from '~/recipes/indicator'
-import { className, type Variants } from '~/utils'
+import { indicatorConfig } from '#recipes/indicator'
+import { className, type Variants } from '#utils'
 
 export const scrollArrowConfig = () => {
   const indicator = indicatorConfig()
