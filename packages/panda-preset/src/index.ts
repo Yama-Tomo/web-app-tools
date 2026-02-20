@@ -1,6 +1,6 @@
 import { definePreset } from '@pandacss/dev'
 
-import { conditions } from './conditions'
+import { conditions } from './conditions.ts'
 import { keyframes } from './keyframes.ts'
 import { recipes } from './recipes'
 import { semanticTokens } from './semanticTokens'
