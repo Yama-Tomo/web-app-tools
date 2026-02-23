@@ -1,4 +1,7 @@
 export const colors = {
+  backdrop: {
+    DEFAULT: { value: 'rgba(0, 0, 0, 0.36)' },
+  },
   bg: {
     DEFAULT: { value: { _dark: 'black', base: 'white' } },
     emphasized: { value: { _dark: '{colors.gray.800}', base: '{colors.gray.200}' } },

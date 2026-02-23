@@ -1,4 +1,5 @@
 export const conditions = {
+  baseuiNestedDialogBackdrop: '[data-base-ui-inert]:has(~ &[data-nested])',
   /**
    * Matches any element that has a next sibling
    * (i.e. not the last child). Useful for adding spacing
