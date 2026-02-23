@@ -3,28 +3,36 @@ import './app.css'
 import { default as addonThemes, withThemeByClassName } from '@storybook/addon-themes'
 import { type Decorator, definePreview } from '@storybook/react-vite'
 
-import { css } from '#panda/css'
+import { css, cx } from '#panda/css'
 
 const TableDecorator: Decorator = (Story, { args, parameters: { tableDecorator } }) => {
   if (tableDecorator) {
     return (
       <table
-        className={css({ '& td:not(:first-child),th:not(:first-child)': { pb: '4', pr: '4' } })}
+        className={cx(
+          css({
+            '& th:first-child': { display: 'none' },
+            '& th, td': { pr: '4', pb: '4' },
+            '&:has(th:first-child:not(:empty))': {
+              '& th:first-child': { display: 'unset' },
+            },
+          }),
+        )}
       >
         <thead>
-          <tr className={css({ _empty: { display: 'none' } })}>
-            {tableDecorator.cols?.length && <td />}
+          <tr>
+            <th scope="col" />
             {tableDecorator.cols?.map((col) => (
-              <td key={col}>{col}</td>
+              <th key={col} scope="col">
+                {col}
+              </th>
             ))}
           </tr>
         </thead>
         <tbody>
           {tableDecorator.rows.map((row, rowIdx) => (
             <tr key={`${row.name}-${rowIdx}`}>
-              <th className={row.name && css({ fontWeight: 'normal', pb: '4', pr: '6' })}>
-                {row.name}
-              </th>
+              <th scope="row">{row.name}</th>
               {row.items.map((item, colIdx) => (
                 <td key={`${item.name}-${colIdx}`}>
                   <Story args={{ ...args, ...item }} />
@@ -54,6 +62,9 @@ export default definePreview({
   ],
   argTypes: {
     root: { table: { disable: true } },
+    viewport: { table: { disable: true } },
+    scrollbar: { table: { disable: true } },
+    thumb: { table: { disable: true } },
     control: { table: { disable: true } },
     label: { table: { disable: true } },
     input: { table: { disable: true } },
