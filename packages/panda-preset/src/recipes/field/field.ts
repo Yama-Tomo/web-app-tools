@@ -44,11 +44,10 @@ export const fieldConfig = () => {
       label: {
         _disabled: { opacity: input.base._disabled.opacity },
         display: 'flex',
-        fontSize: 'sm',
         fontWeight: 'medium',
         gap: '1',
-        lineHeight: '1.25rem',
         textAlign: 'start',
+        textStyle: 'sm',
         userSelect: 'none',
         w: 'var(--label-width, auto)',
       },
