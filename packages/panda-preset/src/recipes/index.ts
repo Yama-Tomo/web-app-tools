@@ -8,6 +8,7 @@ import { indicator } from './indicator'
 import { input } from './input'
 import { numberField } from './numberField'
 import { radio } from './radio'
+import { scrollArea } from './scrollArea'
 import { scrollArrow } from './scrollArrow'
 import { select } from './select'
 import { textarea } from './textarea'
@@ -24,6 +25,7 @@ export const recipes = {
   input,
   numberField,
   radio,
+  scrollArea,
   scrollArrow,
   select,
   textarea,

@@ -12,10 +12,13 @@ export const conditions = {
    * or borders between siblings.
    */
   hasPreviousSibling: '&:not(:first-child)',
+  hover: '&:is(:hover, [data-hover], [data-hovering])',
   /**
    * Matches interactive elements on hover,
    * but ignores disabled / aria-disabled controls.
    */
   hoverEnabled: '&:is(:hover):not(:disabled, [data-disabled], [aria-disabled=true])',
   placeholderShown: '&:is(:placeholder-shown, [data-placeholder-shown], [data-placeholder])',
+  scrolling: '&:is([data-scrolling])',
+  webkitScrollbar: '&::-webkit-scrollbar',
 } as const
