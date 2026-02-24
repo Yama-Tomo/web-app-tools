@@ -89,7 +89,7 @@ export const numberFieldConfig = () => {
         position: 'relative',
       },
       incrementTrigger: trigger.increment,
-      indicator: indicatorConfig().base,
+      indicator: { ...indicatorConfig().base, color: 'token(colors.fg.muted)' },
       input: base.input,
       root: base.root,
       triggerGroup: {

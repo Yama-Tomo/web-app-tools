@@ -15,7 +15,7 @@ export const scrollArrowConfig = () => {
   return {
     base: {
       alignItems: 'center',
-      color: indicator.base.color,
+      color: 'token(colors.fg.muted)',
       display: 'flex',
       fontSize: indicator.base.fontSize,
       h: indicator.base.h,

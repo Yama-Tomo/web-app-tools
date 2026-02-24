@@ -7,7 +7,6 @@ export const indicatorConfig = () => {
 
   return {
     base: {
-      color: 'token(colors.fg.muted)',
       fontSize: indicatorSize,
       h: indicatorSize,
       w: indicatorSize,

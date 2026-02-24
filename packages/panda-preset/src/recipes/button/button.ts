@@ -6,11 +6,11 @@ export const buttonConfig = () => {
   const variants = {
     // biome-ignore assist/source/useSortedKeys: Sizes are intentionally not sorted alphabetically for better recognizability
     size: {
-      xs: { fontSize: 'xs', h: '8', px: '2' },
-      sm: { fontSize: 'sm', h: '9', px: '3' },
-      md: { fontSize: 'sm', h: '10', px: '4' },
-      lg: { fontSize: 'md', h: '11', px: '5' },
-      xl: { fontSize: 'md', h: '12', px: '5' },
+      xs: { fontSize: 'xs', gap: '1', h: '8', px: '2' },
+      sm: { fontSize: 'sm', gap: '2', h: '9', px: '3' },
+      md: { fontSize: 'sm', gap: '2', h: '10', px: '4' },
+      lg: { fontSize: 'md', gap: '3', h: '11', px: '5' },
+      xl: { fontSize: 'md', gap: '2.5', h: '12', px: '5' },
     },
     variant: {
       ghost: {
