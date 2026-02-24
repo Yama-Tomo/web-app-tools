@@ -1,11 +1,8 @@
 import { defineSlotRecipe, type SlotRecipeConfig } from '@pandacss/dev'
 
-import { inputConfig } from '#recipes/input'
 import { className, type SlotVariants } from '#utils'
 
 export const fieldConfig = () => {
-  const input = inputConfig()
-
   const slots = ['root', 'label', 'col', 'requiredIndicator', 'helperText', 'errorText'] as const
   type Slots = (typeof slots)[number]
 
@@ -30,19 +27,19 @@ export const fieldConfig = () => {
         gap: '1.5',
       },
       errorText: {
-        _disabled: { opacity: input.base._disabled.opacity },
+        _disabled: { layerStyle: 'disabledOpacity' },
         color: 'token(colors.fg.error)',
         fontSize: 'xs',
         lineHeight: '1rem',
       },
       helperText: {
-        _disabled: { opacity: input.base._disabled.opacity },
+        _disabled: { layerStyle: 'disabledOpacity' },
         color: 'token(colors.fg.muted)',
         fontSize: 'xs',
         lineHeight: '1rem',
       },
       label: {
-        _disabled: { opacity: input.base._disabled.opacity },
+        _disabled: { layerStyle: 'disabledOpacity' },
         display: 'flex',
         fontWeight: 'medium',
         gap: '1',

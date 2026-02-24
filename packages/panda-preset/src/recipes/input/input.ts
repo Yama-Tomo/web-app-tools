@@ -41,10 +41,7 @@ export const inputConfig = () => {
 
   return {
     base: {
-      _disabled: {
-        cursor: 'not-allowed',
-        opacity: '0.5',
-      },
+      _disabled: { layerStyle: 'disabled' },
       _invalid: {
         '--invalid-ring-color': 'token(colors.border.error)',
       },

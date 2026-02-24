@@ -39,10 +39,7 @@ export const buttonConfig = () => {
 
   return {
     base: {
-      _disabled: {
-        cursor: 'not-allowed',
-        opacity: '0.4',
-      },
+      _disabled: { layerStyle: 'disabled' },
       _focusVisible: {
         outlineColor: 'token(colors.colorPalette.focusRing, colors.gray.focusRing)',
         outlineOffset: '2px',
