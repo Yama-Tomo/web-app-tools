@@ -9,3 +9,5 @@ export type SlotVariants<S extends string, V extends string = string> = Record<
   V,
   SlotRecipeVariantRecord<S>[keyof SlotRecipeVariantRecord<S>]
 >
+
+export type AllKeys<T> = Record<keyof T, unknown>

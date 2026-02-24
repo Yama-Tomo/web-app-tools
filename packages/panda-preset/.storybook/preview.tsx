@@ -54,7 +54,7 @@ export default definePreview({
     TableDecorator,
     withThemeByClassName({
       themes: {
-        light: '',
+        light: 'light',
         dark: 'dark',
       },
       defaultTheme: 'light',
@@ -76,6 +76,8 @@ export default definePreview({
     positioner: { table: { disable: true } },
     indicator: { table: { disable: true } },
     className: { table: { disable: true } },
+    groupLabel: { table: { disable: true } },
+    separator: { table: { disable: true } },
   },
   parameters: {
     controls: {

@@ -1,71 +1,26 @@
 import { defineRecipe, type RecipeConfig } from '@pandacss/dev'
 
-import { className, type Variants } from '#utils'
+import { buttonRecipe } from '#chakraPreset/recipes'
+import { type AllKeys, className, omit, type Variants } from '#utils'
 
 export const buttonConfig = () => {
+  const { ghost, subtle, solid, surface, outline, plain } = buttonRecipe.variants.variant
   const variants = {
-    // biome-ignore assist/source/useSortedKeys: Sizes are intentionally not sorted alphabetically for better recognizability
-    size: {
-      xs: { fontSize: 'xs', h: '8', px: '2' },
-      sm: { fontSize: 'sm', h: '9', px: '3' },
-      md: { fontSize: 'sm', h: '10', px: '4' },
-      lg: { fontSize: 'md', h: '11', px: '5' },
-      xl: { fontSize: 'md', h: '12', px: '5' },
-    },
+    ...buttonRecipe.variants,
     variant: {
-      ghost: {
-        _hoverEnabled: {
-          bg: 'token(colors.colorPalette.subtle, colors.gray.subtle)',
-        },
-        bg: 'transparent',
-        color: 'token(colors.colorPalette.fg, colors.gray.fg)',
-      },
-      outline: {
-        _hoverEnabled: {
-          bg: 'token(colors.colorPalette.subtle, colors.gray.subtle)',
-        },
-        borderColor: 'token(colors.colorPalette.border, colors.gray.border)',
-        color: 'token(colors.colorPalette.fg, colors.gray.fg)',
-      },
-      solid: {
-        _hoverEnabled: {
-          bg: 'color-mix(in srgb, token(colors.colorPalette.solid, colors.gray.solid) 90%, transparent)',
-        },
-        bg: 'token(colors.colorPalette.solid, colors.gray.solid)',
-        color: 'token(colors.colorPalette.contrast, colors.gray.contrast)',
-      },
-    },
+      ghost: { ...omit(ghost, ['_hover']), _hoverEnabled: ghost._hover },
+      outline: { ...omit(outline, ['_hover']), _hoverEnabled: outline._hover },
+      plain,
+      solid: { ...omit(solid, ['_hover']), _hoverEnabled: solid._hover },
+      subtle: { ...omit(subtle, ['_hover']), _hoverEnabled: subtle._hover },
+      surface: { ...omit(surface, ['_hover']), _hoverEnabled: surface._hover },
+    } satisfies AllKeys<typeof buttonRecipe.variants.variant>,
   } as const satisfies Variants
 
   return {
-    base: {
-      _disabled: {
-        cursor: 'not-allowed',
-        opacity: '0.4',
-      },
-      _focusVisible: {
-        outlineColor: 'token(colors.colorPalette.focusRing, colors.gray.focusRing)',
-        outlineOffset: '2px',
-        outlineStyle: 'solid',
-        outlineWidth: '2px',
-      },
-      alignItems: 'center',
-      appearance: 'none',
-      borderColor: 'transparent',
-      borderRadius: 'sm',
-      borderWidth: 'thin',
-      cursor: 'pointer',
-      display: 'inline-flex',
-      fontWeight: '500',
-      justifyContent: 'center',
-      userSelect: 'none',
-    },
+    base: buttonRecipe.base,
     className: className('button'),
-    defaultVariants: {
-      size: 'md',
-      variant: 'solid',
-    },
-    description: 'Button',
+    defaultVariants: buttonRecipe.defaultVariants,
     variants,
   } as const satisfies RecipeConfig<typeof variants>
 }

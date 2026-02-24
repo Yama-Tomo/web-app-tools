@@ -1,33 +1,17 @@
-import { attachedTextField } from './attachedTextField'
+import { recipes as chakraPresetRecipes } from '#chakraPreset/recipes'
+import { omit } from '#utils'
 import { button } from './button'
-import { checkbox } from './checkbox'
-import { dialog } from './dialog'
-import { field } from './field'
 import { iconButton } from './iconButton'
-import { indicator } from './indicator'
 import { input } from './input'
-import { numberField } from './numberField'
-import { radio } from './radio'
-import { scrollArea } from './scrollArea'
 import { scrollArrow } from './scrollArrow'
-import { select } from './select'
 import { textarea } from './textarea'
-import { textField } from './textField'
 
 export const recipes = {
-  attachedTextField,
+  ...omit(chakraPresetRecipes, ['container']),
   button,
-  checkbox,
-  dialog,
-  field,
+  containerRecipe: chakraPresetRecipes.container, // NOTE: `container` is already exported, so use a non-conflicting name
   iconButton,
-  indicator,
   input,
-  numberField,
-  radio,
-  scrollArea,
   scrollArrow,
-  select,
   textarea,
-  textField,
 }

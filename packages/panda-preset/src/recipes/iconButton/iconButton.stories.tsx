@@ -3,6 +3,11 @@ import type { ComponentProps } from 'react'
 import { css } from '#panda/css'
 import { iconButton } from '#panda/recipes'
 import preview from '#sb/preview.tsx'
+import { keys } from '#utils'
+import { iconButtonConfig } from './iconButton.ts'
+
+const variants = keys(iconButtonConfig().variants.variant)
+const sizes = keys(iconButtonConfig().variants.size)
 
 type Args = ComponentProps<'button'>
 
@@ -25,24 +30,13 @@ const meta = preview.meta({
   ),
 })
 
-const variants = ['solid', 'outline', 'ghost'] as const
-const sizes = ['xs', 'sm', 'md', 'lg', 'xl'] as const
-
 export const Basic = meta.story()
 
 export const Variants = meta.story({
   parameters: {
     tableDecorator: {
       cols: variants,
-      rows: [
-        {
-          items: [
-            { className: iconButton({ variant: variants[0] }) },
-            { className: iconButton({ variant: variants[1] }) },
-            { className: iconButton({ variant: variants[2] }) },
-          ] satisfies Args[],
-        },
-      ],
+      rows: [{ items: variants.map((variant) => ({ className: iconButton({ variant }) })) }],
     },
   },
 })
@@ -51,17 +45,7 @@ export const Sizes = meta.story({
   parameters: {
     tableDecorator: {
       cols: sizes,
-      rows: [
-        {
-          items: [
-            { className: iconButton({ size: sizes[0] }) },
-            { className: iconButton({ size: sizes[1] }) },
-            { className: iconButton({ size: sizes[2] }) },
-            { className: iconButton({ size: sizes[3] }) },
-            { className: iconButton({ size: sizes[4] }) },
-          ] satisfies Args[],
-        },
-      ],
+      rows: [{ items: sizes.map((size) => ({ className: iconButton({ size }) })) }],
     },
   },
 })

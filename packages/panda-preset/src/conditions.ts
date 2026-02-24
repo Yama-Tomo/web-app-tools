@@ -1,5 +1,7 @@
 export const conditions = {
   baseuiNestedDialogBackdrop: '[data-base-ui-inert]:has(~ &[data-nested])',
+  dark: '.dark &',
+  fits: '&:not([data-has-overflow-x], [data-has-overflow-y])',
   /**
    * Matches any element that has a next sibling
    * (i.e. not the last child). Useful for adding spacing
@@ -18,7 +20,14 @@ export const conditions = {
    * but ignores disabled / aria-disabled controls.
    */
   hoverEnabled: '&:is(:hover):not(:disabled, [data-disabled], [aria-disabled=true])',
+  icon: '& :where(svg)',
+  light: '.light &',
   placeholderShown: '&:is(:placeholder-shown, [data-placeholder-shown], [data-placeholder])',
+  placementBottom: '&[data-side=bottom]',
+  placementCenter: '&[data-side=none]',
+  placementInlineEnd: '&:is([data-side=right], [data-side=inline-end])',
+  placementInlineStart: '&:is([data-side=left], [data-side=inline-start])',
+  placementTop: '&[data-side=top]',
   scrolling: '&:is([data-scrolling])',
   webkitScrollbar: '&::-webkit-scrollbar',
 } as const

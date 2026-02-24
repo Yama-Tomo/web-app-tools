@@ -20,6 +20,7 @@
     },
     "#utils": "./src/utils/index.ts",
     "#recipes/*": "./src/recipes/*/index.ts",
+    "#chakraPreset/*": "./vendor/chakraPreset/*.ts",
     "#*": "./src/*"
   },
   "exports": {
@@ -36,6 +37,7 @@
   },
   "scripts": {
     "prepare": "panda codegen",
+    "install_chakra_preset": "tsx ./scripts/install_chakra_preset.ts",
     "build": "tsdown --format esm --format cjs",
     "gh-publish": "gh-publish",
     "typecheck": "tsc",
