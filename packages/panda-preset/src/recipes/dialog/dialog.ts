@@ -78,8 +78,8 @@ export const dialogConfig = () => {
       body: { pb: '6', pt: '2', px: '6' },
       popup: {
         _baseuiNestedDialogBackdrop: { bg: 'token(colors.backdrop)' },
-        _closed: { animationDuration: 'fast', animationName: 'scaleOut, fadeOut' },
-        _open: { animationDuration: 'fast', animationName: 'scaleIn, fadeIn' },
+        _closed: { animationDuration: 'fast', animationStyle: 'scaleFadeOut' },
+        _open: { animationDuration: 'fast', animationStyle: 'scaleFadeIn' },
         bg: 'token(colors.bg.panel)',
         borderColor: 'token(colors.border.muted)',
         borderRadius: 'md',
