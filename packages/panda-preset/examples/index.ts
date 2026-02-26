@@ -1,6 +1,7 @@
 import { baseUICheckbox } from './baseUICheckbox'
 import { baseUIDialog } from './baseUIDialog'
 import { baseUIField } from './baseUIField'
+import { baseUIMenu } from './baseUIMenu'
 import { baseUINumberField } from './baseUINumberField'
 import { baseUIRadio } from './baseUIRadio'
 import { baseUIScrollArea } from './baseUIScrollArea'
@@ -15,6 +16,7 @@ export const slotRecipes = {
   baseUICheckbox,
   baseUIDialog,
   baseUIField,
+  baseUIMenu,
   baseUINumberField,
   baseUIRadio,
   baseUIScrollArea,
