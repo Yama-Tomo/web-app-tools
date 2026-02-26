@@ -6,5 +6,5 @@ import { pandaDevConfig } from './src/panda.dev-config.ts'
 export default defineConfig({
   ...pandaDevConfig,
   preflight: true,
-  presets: ['@pandacss/dev/presets', yamatomoPreset],
+  presets: [yamatomoPreset],
 })

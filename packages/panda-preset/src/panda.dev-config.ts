@@ -5,6 +5,7 @@
 export const pandaDevConfig = {
   importMap: '#panda',
   include: ['./.storybook/**/*.{js,jsx,ts,tsx}', './src/**/*.stories.{js,jsx,ts,tsx}'],
+  staticCss: { recipes: '*' } as const,
   strictTokens: true,
   theme: {
     extend: {
@@ -24,19 +25,6 @@ export const pandaDevConfig = {
       },
       tokens: {
         colors: {
-          gray: {
-            50: { value: '#fafafa' },
-            100: { value: '#f4f4f5' },
-            200: { value: '#e4e4e7' },
-            300: { value: '#d4d4d8' },
-            400: { value: '#a1a1aa' },
-            500: { value: '#71717a' },
-            600: { value: '#52525b' },
-            700: { value: '#3f3f46' },
-            800: { value: '#27272a' },
-            900: { value: '#18181b' },
-            950: { value: '#111111' },
-          },
           primary: {
             50: { value: '#f4f7fe' },
             100: { value: '#d4e0fb' },

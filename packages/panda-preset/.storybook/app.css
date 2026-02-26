@@ -1,12 +1,1 @@
 @layer reset, base, tokens, recipes, utilities;
-
-:root {
-  font-size: 16px;
-  background-color: white;
-  color: black;
-}
-
-:root.dark {
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #09090b;
-}
