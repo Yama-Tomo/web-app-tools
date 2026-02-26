@@ -75,6 +75,7 @@ export default definePreview({
     popup: { table: { disable: true } },
     positioner: { table: { disable: true } },
     indicator: { table: { disable: true } },
+    itemIndicator: { table: { disable: true } },
     className: { table: { disable: true } },
     groupLabel: { table: { disable: true } },
     separator: { table: { disable: true } },
