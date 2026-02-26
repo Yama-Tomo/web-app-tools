@@ -4,6 +4,7 @@ import { attachedTextField } from './attachedTextField'
 import { checkbox } from './checkbox'
 import { dialog } from './dialog'
 import { field } from './field'
+import { menu } from './menu'
 import { numberField } from './numberField'
 import { radio } from './radio'
 import { scrollArea } from './scrollArea'
@@ -16,6 +17,7 @@ export const slotRecipes = {
   checkbox,
   dialog,
   field,
+  menu,
   numberField,
   radio,
   scrollArea,
