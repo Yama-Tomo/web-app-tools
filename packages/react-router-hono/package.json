@@ -1,6 +1,6 @@
 {
   "name": "@yamatomo/react-router-hono",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Integration React Router and Hono",
   "keywords": [],
   "license": "MIT",
