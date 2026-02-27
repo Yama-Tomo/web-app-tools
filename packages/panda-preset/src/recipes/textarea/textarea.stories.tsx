@@ -4,10 +4,10 @@ import { css, cx } from '#panda/css'
 import { textarea } from '#panda/recipes'
 import preview from '#sb/preview.tsx'
 import { keys } from '#utils'
-import { textAreaConfig } from './textarea.ts'
+import { textarea as textAreaConfig } from './textarea.ts'
 
-const variants = keys(textAreaConfig().variants.variant)
-const sizes = keys(textAreaConfig().variants.size)
+const variants = keys(textAreaConfig.variants.variant)
+const sizes = keys(textAreaConfig.variants.size)
 
 type Args = ComponentProps<'textarea'>
 

@@ -4,9 +4,9 @@ import { css, cx } from '#panda/css'
 import { attachedTextField } from '#panda/recipes'
 import preview from '#sb/preview.tsx'
 import { keys } from '#utils'
-import { attachedTextFieldConfig } from './attachedTextField.ts'
+import { attachedTextField as attachedTextFieldConfig } from './attachedTextField.ts'
 
-const variants = keys(attachedTextFieldConfig().variants.variant)
+const variants = keys(attachedTextFieldConfig.variants.variant)
 
 type Args = Partial<ReturnType<typeof attachedTextField>> & ComponentProps<'input'>
 

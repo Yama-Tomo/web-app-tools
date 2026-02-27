@@ -1,1 +1,1 @@
-export { iconButton, iconButtonConfig } from './iconButton.ts'
+export { iconButton } from './iconButton.ts'

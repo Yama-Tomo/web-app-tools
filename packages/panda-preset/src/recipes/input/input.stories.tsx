@@ -4,10 +4,10 @@ import { css } from '#panda/css'
 import { input } from '#panda/recipes'
 import preview from '#sb/preview.tsx'
 import { keys } from '#utils'
-import { inputConfig } from './input.ts'
+import { input as inputConfig } from './input.ts'
 
-const variants = keys(inputConfig().variants.variant)
-const sizes = keys(inputConfig().variants.size)
+const variants = keys(inputConfig.variants.variant)
+const sizes = keys(inputConfig.variants.size)
 
 type Args = ComponentProps<'input'>
 

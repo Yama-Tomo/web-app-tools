@@ -21,6 +21,7 @@
     "#utils": "./src/utils/index.ts",
     "#recipes/*": "./src/recipes/*/index.ts",
     "#chakraPreset/*": "./vendor/chakraPreset/*.ts",
+    "#yamatomo/panda-preset": "./src/index.ts",
     "#*": "./src/*"
   },
   "exports": {

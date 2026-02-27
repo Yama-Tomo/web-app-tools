@@ -3,5 +3,5 @@
   "compilerOptions": {
     "jsx": "react-jsx"
   },
-  "include": ["src", ".storybook/**/*", "scripts"]
+  "include": ["src", ".storybook/**/*", "scripts", "examples"]
 }

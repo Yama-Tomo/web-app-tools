@@ -1,5 +1,6 @@
 import { definePreset } from '@pandacss/dev'
 
+import { animationStyles } from '#chakraPreset/animationStyles'
 import { breakpoints } from '#chakraPreset/breakpoints'
 import { globalCss } from '#chakraPreset/globalCss'
 import { keyframes } from '#chakraPreset/keyframes'
@@ -7,11 +8,11 @@ import { layerStyles } from '#chakraPreset/layerStyles'
 import { textStyles } from '#chakraPreset/textStyles'
 import * as tokens from '#chakraPreset/tokens'
 import { utilities } from '#chakraPreset/utilities'
-import { animationStyles } from './animationStyles.ts'
 import { conditions } from './conditions.ts'
 import { recipes } from './recipes'
 import * as semanticTokens from './semanticTokens.ts'
 import { slotRecipes } from './slotRecipes'
+import { type AllKeys, className, keys, omit, type SlotVariants, type Variants } from './utils'
 
 export const preset = definePreset({
   conditions: {
@@ -48,3 +49,6 @@ export const presetValues = {
   textStyles,
   tokens,
 }
+
+export const utils = { className, keys, omit }
+export type { AllKeys, SlotVariants, Variants }
