@@ -3,12 +3,15 @@ import { baseUIDialog } from './baseUIDialog'
 import { baseUIField } from './baseUIField'
 import { baseUIMenu } from './baseUIMenu'
 import { baseUINumberField } from './baseUINumberField'
+import { baseUIPopover } from './baseUIPopover'
 import { baseUIRadio } from './baseUIRadio'
 import { baseUIScrollArea } from './baseUIScrollArea'
 import { baseUISelect } from './baseUISelect'
+import { popoverArrow } from './popoverArrow'
 import { scrollArrow } from './scrollArrow'
 
 export const recipes = {
+  popoverArrow,
   scrollArrow,
 }
 
@@ -18,6 +21,7 @@ export const slotRecipes = {
   baseUIField,
   baseUIMenu,
   baseUINumberField,
+  baseUIPopover,
   baseUIRadio,
   baseUIScrollArea,
   baseUISelect,
