@@ -19,5 +19,7 @@ export const conditions = {
   hoverEnabled: '&:is(:hover):not(:disabled, [data-disabled], [aria-disabled=true])',
   icon: '& :where(svg)',
   light: '.light &',
+  menuItemCheckbox: '&[role=menuitemcheckbox]',
+  menuItemRadio: '&[role=menuitemradio]',
   webkitScrollbar: '&::-webkit-scrollbar',
 } as const
