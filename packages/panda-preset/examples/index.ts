@@ -7,6 +7,7 @@ import { baseUIPopover } from './baseUIPopover'
 import { baseUIRadio } from './baseUIRadio'
 import { baseUIScrollArea } from './baseUIScrollArea'
 import { baseUISelect } from './baseUISelect'
+import { baseUITooltip } from './baseUITooltip'
 import { popoverArrow } from './popoverArrow'
 import { scrollArrow } from './scrollArrow'
 
@@ -25,6 +26,7 @@ export const slotRecipes = {
   baseUIRadio,
   baseUIScrollArea,
   baseUISelect,
+  baseUITooltip,
 }
 
 export { animationStyles } from './animationStyles.ts'

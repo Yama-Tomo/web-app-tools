@@ -5,10 +5,9 @@ import { presetValues } from '#yamatomo/panda-preset'
 
 export const popoverArrow = {
   base: {
-    ...presetValues.slotRecipes.popover.base.arrow,
     _before: {
       ...presetValues.slotRecipes.popover.base.arrowTip,
-      bg: 'var(--arrow-background)',
+      bg: 'var(--arrow-background, token(colors.bg.panel))',
       content: `""`,
       h: 'full',
       position: 'absolute',
@@ -31,9 +30,8 @@ export const popoverArrow = {
       top: 'var(--arrow-offset)',
     },
     '--arrow-offset': 'calc(100% + var(--arrow-size-half) * -1)',
-    '--arrow-size-half': 'calc(var(--arrow-size) / 2)',
-    h: 'var(--arrow-size)',
-    w: 'var(--arrow-size)',
+    '--arrow-size-half': 'calc(var(--arrow-size, token(sizes.3)) / 2)',
+    boxSize: 'var(--arrow-size, token(sizes.3))',
   },
   className: className('popover-arrow'),
 } as const satisfies RecipeConfig
