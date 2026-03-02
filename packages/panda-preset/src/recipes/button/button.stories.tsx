@@ -4,10 +4,10 @@ import { css } from '#panda/css'
 import { button } from '#panda/recipes'
 import preview from '#sb/preview.tsx'
 import { keys } from '#utils'
-import { buttonConfig } from './button.ts'
+import { button as buttonConfig } from './button.ts'
 
-const variants = keys(buttonConfig().variants.variant)
-const sizes = keys(buttonConfig().variants.size)
+const variants = keys(buttonConfig.variants.variant)
+const sizes = keys(buttonConfig.variants.size)
 
 type Args = ComponentProps<'button'> & { withIcon?: boolean }
 

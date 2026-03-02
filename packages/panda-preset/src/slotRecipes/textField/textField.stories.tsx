@@ -4,9 +4,9 @@ import { css, cx } from '#panda/css'
 import { textField } from '#panda/recipes'
 import preview from '#sb/preview.tsx'
 import { keys } from '#utils'
-import { textFieldConfig } from './textField.ts'
+import { textField as textFieldConfig } from './textField.ts'
 
-const variants = keys(textFieldConfig().variants.variant)
+const variants = keys(textFieldConfig.variants.variant)
 
 type Args = Partial<ReturnType<typeof textField>> & ComponentProps<'input'>
 

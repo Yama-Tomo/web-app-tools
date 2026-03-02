@@ -1,7 +1,10 @@
 import { defineMain } from '@storybook/react-vite/node'
 
 export default defineMain({
-  stories: ['../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
+  stories: [
+    { directory: '../src', files: '**/*.stories.@(js|jsx|ts|tsx)', titlePrefix: '' },
+    { directory: '../examples', files: '**/*.stories.@(js|jsx|ts|tsx)', titlePrefix: 'examples' },
+  ],
   addons: ['@storybook/addon-themes'],
   framework: '@storybook/react-vite',
 })

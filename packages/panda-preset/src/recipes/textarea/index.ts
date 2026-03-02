@@ -1,1 +1,1 @@
-export { textAreaConfig, textarea } from './textarea.ts'
+export { textarea } from './textarea.ts'

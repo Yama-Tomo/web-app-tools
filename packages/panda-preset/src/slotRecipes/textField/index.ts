@@ -1,1 +1,1 @@
-export { textField, textFieldConfig } from './textField.ts'
+export { textField } from './textField.ts'

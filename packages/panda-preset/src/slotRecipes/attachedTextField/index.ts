@@ -1,1 +1,1 @@
-export { attachedTextField, attachedTextFieldConfig } from './attachedTextField.ts'
+export { attachedTextField } from './attachedTextField.ts'

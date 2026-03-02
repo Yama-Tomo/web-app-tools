@@ -3,7 +3,7 @@
   "extends": "//",
   "overrides": [
     {
-      "includes": ["src/**/*"],
+      "includes": ["src/**/*", "examples/**/*"],
       "plugins": [
         ".biome/no-physical-properties.grit",
         ".biome/no-nested-selectors.grit"
