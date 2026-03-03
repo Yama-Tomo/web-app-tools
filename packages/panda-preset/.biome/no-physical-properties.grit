@@ -2,5 +2,6 @@ language js
 
 `$key: $value` where {
   $key <: r"(?i).*(?:left|right).*",
+  $key <: not r"^_?swipe(?:Left|Right)$",
   register_diagnostic(span=$key, message="Physical properties (left/right) are used. Consider using logical properties (e.g., start/end) instead.", severity="warning")
 }
