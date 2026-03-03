@@ -2,6 +2,7 @@ export const conditions = {
   baseuiNestedDialogBackdrop: '[data-base-ui-inert]:has(~ &[data-nested])',
   ending: '&[data-ending-style]',
   fits: '&:not([data-has-overflow-x], [data-has-overflow-y])',
+  hasContent: '&:not(:empty)',
   hover: '&:is(:hover, [data-hover], [data-hovering])',
   limited: '&[data-limited]',
   peerEnding: '[data-ending-style] ~ &',
