@@ -6,7 +6,7 @@ import * as path from 'node:path'
 import * as ts from 'typescript'
 
 const REPO_URL = 'https://github.com/chakra-ui/chakra-ui.git'
-const VERSION = '3.33.0'
+const VERSION = '3.34.0'
 const TAG_NAME = `@chakra-ui/panda-preset@${VERSION}`
 const TARGET_FUNCTIONS: Record<string, string> = {
   defineRecipe: 'recipes',
