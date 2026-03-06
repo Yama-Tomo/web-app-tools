@@ -18,9 +18,13 @@ type Args = Partial<ReturnType<typeof baseUIRadio>> &
 
 const meta = preview.meta({
   args: { ...baseUIRadio(), defaultValue: '', disabled: false, invalid: false },
+  argTypes: {
+    text: { table: { disable: true } },
+  },
   component: ({
     label,
     control,
+    text,
     indicator,
     defaultValue,
     disabled,
@@ -38,22 +42,26 @@ const meta = preview.meta({
         />
       )}
     >
-      <Field.Item className={css({ display: 'flex' })}>
-        <Field.Label className={label}>
-          <Radio.Root value="choice1" className={control}>
-            <Radio.Indicator className={indicator} />
-          </Radio.Root>
-          Choice 1
-        </Field.Label>
-      </Field.Item>
-      <Field.Item className={css({ display: 'flex' })}>
-        <Field.Label className={label}>
-          <Radio.Root value="choice2" className={control}>
-            <Radio.Indicator className={indicator} />
-          </Radio.Root>
-          Choice 2
-        </Field.Label>
-      </Field.Item>
+      {[
+        { name: 'Choice 1', value: 'choice1' },
+        { name: 'Choice 2', value: 'choice2' },
+      ].map(({ value, name }) => (
+        <Field.Item className={css({ display: 'flex' })} key={value}>
+          <Field.Label
+            render={(innerProps) => (
+              // biome-ignore lint/a11y/noLabelWithoutControl: `Radio.Root` is an input element
+              <label {...innerProps} className={label}>
+                <Radio.Root value={value} className={control}>
+                  <Radio.Indicator className={indicator} />
+                </Radio.Root>
+                <span {...innerProps} className={text}>
+                  {name}
+                </span>
+              </label>
+            )}
+          ></Field.Label>
+        </Field.Item>
+      ))}
     </Field.Root>
   ),
 })

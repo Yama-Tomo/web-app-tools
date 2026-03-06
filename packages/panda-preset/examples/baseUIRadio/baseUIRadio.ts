@@ -2,7 +2,7 @@ import type { SlotRecipeConfig } from '@pandacss/dev'
 
 import { type AllKeys, presetValues, type SlotVariants, utils } from '#yamatomo/panda-preset'
 
-const slots = ['label', 'control', 'indicator'] as const
+const slots = ['label', 'text', 'control', 'indicator'] as const
 type Slots = (typeof slots)[number]
 
 const baseRecipe = presetValues.slotRecipes.radioGroup
@@ -40,7 +40,8 @@ export const baseUIRadio = {
   base: {
     control: baseRecipe.base.itemControl,
     indicator: baseRecipe.base.itemControl['& .dot'],
-    label: { ...baseRecipe.base.label, ...baseRecipe.base.item },
+    label: baseRecipe.base.item,
+    text: baseRecipe.base.label,
   },
   className: utils.className('baseui-radio'),
   defaultVariants: baseRecipe.defaultVariants,
