@@ -1,7 +1,10 @@
 export const conditions = {
   baseuiNestedDialogBackdrop: '[data-base-ui-inert]:has(~ &[data-nested])',
+  ending: '&[data-ending-style]',
   fits: '&:not([data-has-overflow-x], [data-has-overflow-y])',
   hover: '&:is(:hover, [data-hover], [data-hovering])',
+  limited: '&[data-limited]',
+  peerEnding: '[data-ending-style] ~ &',
   placeholderShown: '&:is(:placeholder-shown, [data-placeholder-shown], [data-placeholder])',
   placementBottom: '&[data-side=bottom]',
   placementCenter: '&[data-side=none]',
@@ -9,4 +12,7 @@ export const conditions = {
   placementInlineStart: '&:is([data-side=left], [data-side=inline-start])',
   placementTop: '&[data-side=top]',
   scrolling: '&:is([data-scrolling])',
+  starting: '&[data-starting-style]',
+  swipeLeft: '&[data-swipe-direction=left]',
+  swipeRight: '&[data-swipe-direction=right]',
 } as const
