@@ -34,7 +34,7 @@ export declare namespace Options {
   export type { Msw }
 }
 
-export const reactRouterHono: (options?: Options) => Plugin = (options) => {
+export const reactRouterHono: (options?: Options) => Plugin[] = (options) => {
   const { entry = 'server', outFilePermissions = '755', dev } = options || {}
 
   const exclude = dev?.exclude ?? ((defaultExclude) => defaultExclude)
@@ -53,40 +53,44 @@ export const reactRouterHono: (options?: Options) => Plugin = (options) => {
     getLoadContext: dev?.getLoadContext,
   })
 
-  return {
-    ...honoServerAdapter,
-    name: PLUGIN_NAME,
-    config: async function (this, config, env) {
-      const isPluginIncluded = !!config.plugins?.find(
-        (plugin) => plugin && 'name' in plugin && plugin.name === PLUGIN_NAME,
-      )
-      if (!isPluginIncluded) return
-
-      if (env.mode === 'production') {
+  return [
+    {
+      name: `${PLUGIN_NAME}:build`,
+      apply: 'build',
+      config: async function (this, config) {
         return productionConfig(config, entry)
-      }
+      },
+      writeBundle: ({ dir }, outputBundle) => {
+        const outFile = `${basename(entry, extname(entry))}.js`
 
-      if (typeof honoServerAdapter.config !== 'function') {
-        throw new Error('Unexpected honoServerAdapter.config type')
-      }
-      const honoServerAdapterConfig =
-        (await honoServerAdapter.config?.bind(this)(config, env)) ?? undefined
-
-      store.middlewares = dev?.middlewares
-      store.msw = (await dev?.msw) || undefined
-      Object.entries(store.msw?.env() ?? {}).forEach(([name, value]) => {
-        process.env[name] = value
-      })
-
-      return developmentConfig(config, honoServerAdapterConfig)
+        if (dir?.includes('server') && outFile in outputBundle) {
+          chmodSync(join(dir, outFile), outFilePermissions)
+        }
+      },
     },
-    handleHotUpdate: dev?.isReloadWhenServerFileChanged ? honoServerAdapter.handleHotUpdate : noop,
-    writeBundle: ({ dir }, outputBundle) => {
-      const outFile = `${basename(entry, extname(entry))}.js`
+    {
+      ...honoServerAdapter,
+      name: `${PLUGIN_NAME}:dev`,
+      apply: 'serve',
+      config: async function (this, config, env) {
+        if (typeof honoServerAdapter.config !== 'function') {
+          throw new Error('Unexpected honoServerAdapter.config type')
+        }
 
-      if (dir?.includes('server') && outFile in outputBundle) {
-        chmodSync(join(dir, outFile), outFilePermissions)
-      }
+        const honoServerAdapterConfig =
+          (await honoServerAdapter.config?.bind(this)(config, env)) ?? undefined
+
+        store.middlewares = dev?.middlewares
+        store.msw = (await dev?.msw) || undefined
+        Object.entries(store.msw?.env() ?? {}).forEach(([name, value]) => {
+          process.env[name] = value
+        })
+
+        return developmentConfig(config, honoServerAdapterConfig)
+      },
+      handleHotUpdate: dev?.isReloadWhenServerFileChanged
+        ? honoServerAdapter.handleHotUpdate
+        : noop,
     },
-  }
+  ]
 }
