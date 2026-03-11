@@ -1,5 +1,5 @@
 import { createRequire } from 'node:module'
-import { basename, extname } from 'node:path'
+import { basename, dirname, extname } from 'node:path'
 
 import { mergeConfig, type UserConfig } from 'vite'
 
@@ -36,8 +36,8 @@ const commonConfig = (extendedConfig: UserConfig) => ({
 const useProductionReactRouterConfig = () => ({
   resolve: {
     alias: {
-      'react-router/dom': require.resolve('react-router/dom').replace('development', 'production'),
-      'react-router': require.resolve('react-router').replace('development', 'production'),
+      'react-router/dom': `${dirname(require.resolve('react-router/dom').replace('development', 'production'))}/dom-export`,
+      'react-router': `${dirname(require.resolve('react-router').replace('development', 'production'))}/index`,
     },
   },
   ssr: {
