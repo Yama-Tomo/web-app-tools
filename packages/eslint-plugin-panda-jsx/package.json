@@ -1,0 +1,47 @@
+{
+  "name": "@yamatomo/eslint-plugin-panda-jsx",
+  "version": "0.0.0",
+  "description": "ESLint plugin for Panda CSS",
+  "keywords": [],
+  "license": "MIT",
+  "author": "Yama-Tomo",
+  "bin": {
+    "panda-jsx-linter": "./dist/cli.cjs"
+  },
+  "files": [
+    "./dist",
+    "./README.md"
+  ],
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.mts",
+  "main": "./dist/index.cjs",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    }
+  },
+  "scripts": {
+    "build": "tsdown src/cli.ts src/index.ts --format esm --format cjs",
+    "gh-publish": "gh-publish",
+    "test": "vitest",
+    "typecheck": "tsc"
+  },
+  "engines": {
+    "node": ">=22.4.0"
+  },
+  "peerDependencies": {
+    "@typescript-eslint/parser": ">=8.0.0",
+    "eslint": ">=9.0.0"
+  },
+  "devDependencies": {
+    "@typescript-eslint/rule-tester": "^8.57.0",
+    "@yamatomo/gh-publish": "workspace:*"
+  }
+}
