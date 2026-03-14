@@ -37,12 +37,12 @@
     }
   },
   "scripts": {
-    "prepare": "panda codegen",
+    "codegen": "panda codegen",
+    "dev": "pnpm codegen && storybook dev",
     "install_chakra_preset": "tsx ./scripts/install_chakra_preset.ts",
     "build": "tsdown --format esm --format cjs",
     "gh-publish": "gh-publish",
-    "typecheck": "tsc",
-    "storybook": "storybook dev",
+    "typecheck": "pnpm codegen && tsc",
     "build-storybook": "storybook build"
   },
   "engines": {
