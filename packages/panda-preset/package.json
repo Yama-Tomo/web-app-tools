@@ -41,9 +41,9 @@
     "dev": "pnpm codegen && storybook dev",
     "install_chakra_preset": "tsx ./scripts/install_chakra_preset.ts",
     "build": "tsdown --format esm --format cjs",
+    "build-storybook": "storybook build",
     "gh-publish": "gh-publish",
-    "typecheck": "pnpm codegen && tsc",
-    "build-storybook": "storybook build"
+    "typecheck": "pnpm codegen && tsc"
   },
   "engines": {
     "node": ">=22.4.0"
