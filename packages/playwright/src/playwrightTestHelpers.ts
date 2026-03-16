@@ -82,4 +82,5 @@ const defineConfig = (config: PlaywrightTestConfig & FixtureConfigParams) => {
 }
 
 export * from '@playwright/test'
-export { test, defineConfig }
+
+export { defineConfig, test }
