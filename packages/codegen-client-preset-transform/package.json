@@ -1,0 +1,56 @@
+{
+  "name": "@yamatomo/codegen-client-preset-transform",
+  "version": "0.0.0",
+  "keywords": [
+    "graphql-codegen",
+    "preset-client",
+    "vite",
+    "vite-plugin"
+  ],
+  "license": "MIT",
+  "author": "Yama-Tomo",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "main": "./dist/index.cjs",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    }
+  },
+  "scripts": {
+    "build": "tsdown --format esm --format cjs",
+    "gh-publish": "gh-publish",
+    "test": "vitest",
+    "typecheck": "tsc"
+  },
+  "dependencies": {
+    "magic-string": "^0.30.17"
+  },
+  "peerDependencies": {
+    "graphql": "^15.0.0 || ^16.0.0",
+    "typescript": "^5.0.0",
+    "vite": "^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0"
+  },
+  "peerDependenciesMeta": {
+    "vite": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@yamatomo/gh-publish": "workspace:*",
+    "graphql": "^16.13.1",
+    "vite": "^7.3.1",
+    "vitest": "^4.0.17"
+  }
+}
