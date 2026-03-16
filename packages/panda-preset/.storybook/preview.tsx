@@ -31,9 +31,11 @@ const TableDecorator: Decorator = (Story, { args, parameters: { tableDecorator }
         </thead>
         <tbody>
           {tableDecorator.rows.map((row, rowIdx) => (
+            // biome-ignore lint/suspicious/noArrayIndexKey: Using index as key because row reordering does not occur
             <tr key={`${row.name}-${rowIdx}`}>
               <th scope="row">{row.name}</th>
               {row.items.map((item, colIdx) => (
+                // biome-ignore lint/suspicious/noArrayIndexKey: Using index as key because row reordering does not occur>
                 <td key={`${item.name}-${colIdx}`}>
                   <Story args={{ ...args, ...item }} />
                 </td>
