@@ -1,6 +1,6 @@
 {
   "name": "@yamatomo/codegen-client-preset-transform",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "keywords": [
     "graphql-codegen",
     "preset-client",
