@@ -1,4 +1,5 @@
 import fs from 'node:fs'
+import process from 'node:process'
 
 import { throttling } from '@octokit/plugin-throttling'
 import { Octokit } from '@octokit/rest'
@@ -22,17 +23,15 @@ const getOctokit = (params: ConstructorParameters<typeof baseOctokit>[0]) => {
         octokit.log.warn(`Request quota exhausted for request ${options.method} ${options.url}`)
 
         if (options.request.retryCount <= 2) {
-          console.log(`Retrying after ${retryAfter} seconds!`)
+          octokit.log.warn(`Retrying after ${retryAfter} seconds!`)
           return true
         }
       },
       onSecondaryRateLimit: (retryAfter, options, octokit, retryCount) => {
-        octokit.log.warning(
-          `SecondaryRateLimit detected for request ${options.method} ${options.url}`,
-        )
+        octokit.log.warn(`SecondaryRateLimit detected for request ${options.method} ${options.url}`)
 
         if (retryCount <= 2) {
-          console.log(`Retrying after ${retryAfter} seconds!`)
+          octokit.log.warn(`Retrying after ${retryAfter} seconds!`)
           return true
         }
       },
@@ -45,13 +44,18 @@ export const publish = async (tarName: string, releaseNote: string, draft: boole
 
   const repo = getGitInfo()
 
-  const octokit = getOctokit({ auth: process.env.GITHUB_TOKEN })
+  const token = process.env.GITHUB_TOKEN
+  if (!token) {
+    throw new Error('GITHUB_TOKEN environment variable is not set')
+  }
 
-  const releases = await octokit.rest.repos.listReleases({ ...repo, per_page: 50 })
+  const octokit = getOctokit({ auth: token })
+
+  const releases = await octokit.paginate(octokit.rest.repos.listReleases, { ...repo })
 
   const releaseName = createReleaseName(packageJson.name, packageJson.version)
 
-  if (releases.data.some((release) => release.tag_name === releaseName)) {
+  if (releases.some((release) => release.tag_name === releaseName)) {
     console.log(`ℹ️  ${releaseName} already exists. skipping release creation.`)
     return
   }

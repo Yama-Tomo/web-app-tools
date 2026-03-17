@@ -35,7 +35,6 @@ describe('pack', () => {
 
     vi.mocked(fs).existsSync.mockReturnValue(false)
     vi.mocked(fs).readdirSync.mockReturnValue(readdirSyncReturnValue(['test.tgz']))
-    vi.mocked(fs).renameSync.mockImplementation(() => {})
     vi.mocked(fs).rmSync.mockImplementation(() => {})
     vi.mocked(fs).mkdtempSync.mockReturnValue('/tmp/gh-pack-xxxx')
     vi.mocked(fs).writeFileSync.mockImplementation((file, content) => {
