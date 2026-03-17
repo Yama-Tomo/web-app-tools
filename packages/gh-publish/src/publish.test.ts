@@ -1,7 +1,7 @@
 import * as fs from 'node:fs'
 
 import { Octokit } from '@octokit/rest'
-import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { beforeEach, describe, expect, it, type Mock, vi } from 'vitest'
 
 import { pack } from './pack.ts'
 import * as utils from './utils.ts'
@@ -20,12 +20,16 @@ vi.mock('./utils.ts', async (original) => ({
 type OctokitInstance = InstanceType<typeof Octokit>
 const OctokitInstance = Octokit.prototype as OctokitInstance
 
+type PaginateMock = Mock<OctokitInstance['paginate']> & OctokitInstance['paginate']
+
 describe('publish', () => {
   const publish = async (...args: Parameters<typeof import('./publish.ts')['publish']>) =>
     await (await import('./publish.ts')).publish(...args)
 
   beforeEach(() => {
     vi.clearAllMocks()
+
+    process.env.GITHUB_TOKEN = 'test-token'
 
     vi.mocked(fs).existsSync.mockReturnValue(true)
     vi.mocked(fs).readFileSync.mockImplementation((file) => {
@@ -52,9 +56,10 @@ describe('publish', () => {
     })
 
     vi.mocked(Octokit.plugin).mockImplementation(() => Octokit)
+    vi.mocked(OctokitInstance).paginate = vi.fn().mockResolvedValue([]) as PaginateMock
     vi.mocked(OctokitInstance).rest = {
       repos: {
-        listReleases: vi.fn().mockResolvedValue({ data: [] }),
+        listReleases: vi.fn(),
         createRelease: vi.fn().mockResolvedValue({ data: { id: 123 } }),
         uploadReleaseAsset: vi.fn(),
       },
@@ -120,11 +125,9 @@ describe('publish', () => {
   })
 
   it('skips if release already exists', async () => {
-    vi.mocked(OctokitInstance).rest = {
-      repos: {
-        listReleases: vi.fn().mockResolvedValue({ data: [{ tag_name: 'test-package-1.0.0' }] }),
-      },
-    } as unknown as OctokitInstance['rest']
+    vi.mocked(OctokitInstance).paginate = vi
+      .fn()
+      .mockResolvedValue([{ tag_name: 'test-package-1.0.0' }]) as PaginateMock
     await publish('test.tgz', 'Release note', false)
 
     expect(vi.mocked(console).log).toHaveBeenCalledWith(

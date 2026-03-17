@@ -35,7 +35,7 @@ const cleanup = (outputTarFile: string) => {
 }
 
 const _pack = (outputTarFile: string, options?: ExecSyncOptions) => {
-  const stdout = execSync(`${getUsingPackageManager()} pack`, { ...options, encoding: 'utf-8' })
+  execSync(`${getUsingPackageManager()} pack`, { ...options, encoding: 'utf-8' })
 
   const maybeTarFiles = fs.readdirSync(process.cwd()).filter((name) => name.endsWith('.tgz'))
   const tarFile = maybeTarFiles.at(0)
@@ -46,56 +46,55 @@ const _pack = (outputTarFile: string, options?: ExecSyncOptions) => {
     throw new Error('Multiple package tarballs found after packing.')
   }
 
+  // NOTE: Use copy+delete instead of rename to avoid EXDEV errors when the temp dir and cwd are on different devices
   fs.copyFileSync(tarFile, outputTarFile)
   fs.rmSync(tarFile)
-
-  return stdout
 }
 
 const rewriteDepsVersionsToGHReleaseUrl = async (
   outputTarFile: string,
   isWorkspacePackage: (packageName: string) => boolean,
 ) => {
+  const cwd = process.cwd()
   const tarName = path.basename(outputTarFile)
 
   const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'gh-pack-'))
 
-  execSync(`tar xzf ${outputTarFile} -C ${tempDir}`)
-  fs.rmSync(outputTarFile)
+  try {
+    execSync(`tar xzf ${outputTarFile} -C ${tempDir}`)
+    fs.rmSync(outputTarFile)
 
-  const repo = getGitInfo()
+    const repo = getGitInfo()
 
-  const rewrite = (dependencies: Record<string, string>) => {
-    Object.entries(dependencies)
-      .filter(([packageName]) => isWorkspacePackage(packageName))
-      .forEach(([packageName, version]) => {
-        const url = `https://github.com/${repo.owner}/${repo.repo}/releases/download/${createReleaseName(packageName, version)}/${tarName}`
+    const rewrite = (dependencies: Record<string, string>) => {
+      Object.entries(dependencies)
+        .filter(([packageName]) => isWorkspacePackage(packageName))
+        .forEach(([packageName, version]) => {
+          const url = `https://github.com/${repo.owner}/${repo.repo}/releases/download/${createReleaseName(packageName, version)}/${tarName}`
 
-        console.log(`♻️  Rewriting dependency ${packageName}@${version} -> ${url}`)
-        dependencies[packageName] = url
-      })
+          console.log(`♻️  Rewriting dependency ${packageName}@${version} -> ${url}`)
+          dependencies[packageName] = url
+        })
+    }
+
+    const workingDir = path.join(tempDir, 'package')
+    const packageJsonFile = path.join(workingDir, 'package.json')
+
+    process.chdir(workingDir)
+
+    const packageJson = await getPackageJsonContent(packageJsonFile)
+    if (packageJson.dependencies) {
+      rewrite(packageJson.dependencies)
+    }
+    if (packageJson.optionalDependencies) {
+      rewrite(packageJson.optionalDependencies)
+    }
+    fs.writeFileSync(packageJsonFile, `${JSON.stringify(packageJson, null, 2)}\n`)
+    _pack(outputTarFile, { stdio: 'ignore' })
+  } finally {
+    process.chdir(cwd)
+    fs.rmSync(tempDir, { recursive: true, force: true })
   }
-
-  const cwd = process.cwd()
-
-  const workingDir = path.join(tempDir, 'package')
-  const packageJsonFile = path.join(workingDir, 'package.json')
-
-  process.chdir(workingDir)
-
-  const packageJson = await getPackageJsonContent(packageJsonFile)
-  if (packageJson.dependencies) {
-    rewrite(packageJson.dependencies)
-  }
-  if (packageJson.optionalDependencies) {
-    rewrite(packageJson.optionalDependencies)
-  }
-  fs.writeFileSync(packageJsonFile, `${JSON.stringify(packageJson, null, 2)}\n`)
-  _pack(outputTarFile, { stdio: 'ignore' })
-
-  process.chdir(cwd)
-
-  fs.rmSync(tempDir, { recursive: true, force: true })
 }
 
 export const pack = async (tarName: string) => {
