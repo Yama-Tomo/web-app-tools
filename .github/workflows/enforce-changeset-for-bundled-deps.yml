@@ -1,0 +1,24 @@
+name: Enforce Changeset for Bundled Deps
+
+on:
+  pull_request:
+    paths:
+      - '**/package.json'
+
+jobs:
+  enforce-changeset:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          fetch-depth: 0
+      - name: Check for bundled dependency updates and required changesets
+        run: |
+          BUNDLED_DEPS="(@manypkg/get-packages|@octokit/plugin-throttling|@octokit/rest|ws)"
+
+          if git diff origin/${{ github.base_ref }}...HEAD -- "package.json" "**/package.json" | grep -E "^\+.*$BUNDLED_DEPS"; then
+            if ! git diff origin/${{ github.base_ref }}...HEAD --name-only | grep -q '^\.changeset/.*\.md$'; then
+              echo "::error title=Changeset Required::Bundled dependencies were updated, but no changeset was found. Please run 'npx changeset' to generate one!"
+              exit 1
+            fi
+          fi
