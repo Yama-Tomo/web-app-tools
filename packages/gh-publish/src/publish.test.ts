@@ -56,8 +56,8 @@ describe('publish', () => {
     })
 
     vi.mocked(Octokit.plugin).mockImplementation(() => Octokit)
-    vi.mocked(OctokitInstance).paginate = vi.fn().mockResolvedValue([]) as PaginateMock
-    vi.mocked(OctokitInstance).rest = {
+    OctokitInstance.paginate = vi.fn().mockResolvedValue([]) as PaginateMock
+    OctokitInstance.rest = {
       repos: {
         listReleases: vi.fn(),
         createRelease: vi.fn().mockResolvedValue({ data: { id: 123 } }),
@@ -125,7 +125,7 @@ describe('publish', () => {
   })
 
   it('skips if release already exists', async () => {
-    vi.mocked(OctokitInstance).paginate = vi
+    OctokitInstance.paginate = vi
       .fn()
       .mockResolvedValue([{ tag_name: 'test-package-1.0.0' }]) as PaginateMock
     await publish('test.tgz', 'Release note', false)
