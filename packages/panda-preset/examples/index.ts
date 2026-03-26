@@ -1,7 +1,9 @@
 import { baseUICheckbox } from './baseUICheckbox'
+import { baseUICombobox } from './baseUICombobox'
 import { baseUIDialog } from './baseUIDialog'
 import { baseUIField } from './baseUIField'
 import { baseUIMenu } from './baseUIMenu'
+import { baseUIMultiCombobox } from './baseUIMultiCombobox'
 import { baseUINumberField } from './baseUINumberField'
 import { baseUIPopover } from './baseUIPopover'
 import { baseUIRadio } from './baseUIRadio'
@@ -19,9 +21,11 @@ export const recipes = {
 
 export const slotRecipes = {
   baseUICheckbox,
+  baseUICombobox,
   baseUIDialog,
   baseUIField,
   baseUIMenu,
+  baseUIMultiCombobox,
   baseUINumberField,
   baseUIPopover,
   baseUIRadio,
