@@ -12,27 +12,22 @@
   "devEngines": {
     "runtime": {
       "name": "node",
-      "version": "22.22.0"
+      "version": "24.14.1"
     },
     "packageManager": {
       "name": "pnpm",
-      "version": "10.32.1"
+      "version": "10.33.0"
     }
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.4.8",
+    "@biomejs/biome": "^2.4.12",
     "@changesets/changelog-github": "^0.6.0",
-    "@changesets/cli": "^2.30.0",
-    "@types/node": "^25.5.0",
-    "@vitest/coverage-v8": "^4.1.1",
-    "tsdown": "^0.21.4",
+    "@changesets/cli": "^2.31.0",
+    "@types/node": "^25.6.0",
+    "@vitest/coverage-v8": "^4.1.4",
+    "tsdown": "^0.21.9",
     "tsx": "^4.21.0",
-    "typescript": "^6.0.2",
-    "vitest": "^4.1.1"
-  },
-  "pnpm": {
-    "overrides": {
-      "typescript": "^6.0.2"
-    }
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.4"
   }
 }
