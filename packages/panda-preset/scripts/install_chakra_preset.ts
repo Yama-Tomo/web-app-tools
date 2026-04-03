@@ -1,4 +1,4 @@
-import { execSync } from 'node:child_process'
+import { spawnSync } from 'node:child_process'
 import * as fs from 'node:fs'
 import * as os from 'node:os'
 import * as path from 'node:path'
@@ -51,7 +51,7 @@ async function runExtraction(tempDir: string, outDir: string, scriptName: string
 
   console.log(`\n📦 Downloading source code for ${TAG_NAME} from GitHub...`)
   try {
-    execSync(`git clone --depth 1 --branch ${TAG_NAME} ${REPO_URL} ${tempDir}`, {
+    spawnSync('git', ['clone', '--depth', '1', '--branch', TAG_NAME, REPO_URL, tempDir], {
       stdio: 'ignore',
     })
     console.log('✅ Download complete')
@@ -146,7 +146,7 @@ async function runExtraction(tempDir: string, outDir: string, scriptName: string
   })
 
   try {
-    execSync(`pnpm -C ../../ lint:fix ${outFiles.join(' ')}`, { stdio: 'ignore' })
+    spawnSync('pnpm', ['-C', '../../', 'lint:fix', ...outFiles], { stdio: 'ignore' })
   } catch {
     console.warn('⚠️  Biome formatting skipped (biome command failed or not found).')
   }
