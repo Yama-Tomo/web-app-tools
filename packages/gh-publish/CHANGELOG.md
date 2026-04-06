@@ -1,5 +1,13 @@
 # @yamatomo/gh-publish
 
+## 0.1.3
+
+### Patch Changes
+
+- [#37](https://github.com/Yama-Tomo/web-app-tools/pull/37) [`b934b9f`](https://github.com/Yama-Tomo/web-app-tools/commit/b934b9fc77e6593ac8f74e58ccf94ab5af5a996b) Thanks [@Yama-Tomo](https://github.com/Yama-Tomo)! - Replace commander with node:util parseArgs
+
+- [#37](https://github.com/Yama-Tomo/web-app-tools/pull/37) [`88902d7`](https://github.com/Yama-Tomo/web-app-tools/commit/88902d78d5a7a1333a5bf783dc245fcefcae2e8a) Thanks [@Yama-Tomo](https://github.com/Yama-Tomo)! - Address bugs found in code review
+
 ## 0.1.2
 
 ### Patch Changes
