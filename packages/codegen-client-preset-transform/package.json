@@ -50,6 +50,6 @@
   "devDependencies": {
     "@yamatomo/gh-publish": "workspace:*",
     "graphql": "^16.13.2",
-    "vite": "^7.3.1"
+    "vite": "^7.3.2"
   }
 }
