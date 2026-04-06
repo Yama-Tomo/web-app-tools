@@ -1,4 +1,4 @@
-import { type ExecSyncOptions, execSync } from 'node:child_process'
+import { type SpawnSyncOptions, spawnSync } from 'node:child_process'
 import * as fs from 'node:fs'
 import * as os from 'node:os'
 import * as path from 'node:path'
@@ -34,8 +34,8 @@ const cleanup = (outputTarFile: string) => {
   }
 }
 
-const _pack = (outputTarFile: string, options?: ExecSyncOptions) => {
-  execSync(`${getUsingPackageManager()} pack`, { ...options, encoding: 'utf-8' })
+const _pack = (outputTarFile: string, options?: SpawnSyncOptions) => {
+  spawnSync(getUsingPackageManager(), ['pack'], { ...options, encoding: 'utf-8' })
 
   const maybeTarFiles = fs.readdirSync(process.cwd()).filter((name) => name.endsWith('.tgz'))
   const tarFile = maybeTarFiles.at(0)
@@ -61,7 +61,7 @@ const rewriteDepsVersionsToGHReleaseUrl = async (
   const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'gh-pack-'))
 
   try {
-    execSync(`tar xzf ${outputTarFile} -C ${tempDir}`)
+    spawnSync('tar', ['xzf', outputTarFile, '-C', tempDir])
     fs.rmSync(outputTarFile)
 
     const repo = getGitInfo()
