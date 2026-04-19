@@ -41,7 +41,9 @@
     "eslint": ">=9.0.0"
   },
   "devDependencies": {
-    "@typescript-eslint/rule-tester": "^8.57.2",
-    "@yamatomo/gh-publish": "workspace:*"
+    "@typescript-eslint/parser": "^8.58.2",
+    "@typescript-eslint/rule-tester": "^8.58.2",
+    "@yamatomo/gh-publish": "workspace:*",
+    "eslint": "^10.2.1"
   }
 }

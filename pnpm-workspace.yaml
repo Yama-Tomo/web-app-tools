@@ -5,3 +5,11 @@ packages:
 onlyBuiltDependencies:
   - esbuild
   - msw
+
+overrides:
+  typescript: ^6.0.3
+
+packageExtensions:
+  hono-react-router-adapter:
+    peerDependencies:
+      vite: "*"

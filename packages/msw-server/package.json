@@ -43,8 +43,10 @@
     }
   },
   "devDependencies": {
+    "@types/ws": "^8.18.1",
     "@yamatomo/gh-publish": "workspace:*",
     "@yamatomo/internal-utils": "workspace:*",
+    "msw": "^2.13.4",
     "ws": "8.19.0"
   }
 }

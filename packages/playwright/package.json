@@ -28,7 +28,9 @@
     "build": "tsdown --format esm --format cjs",
     "gh-publish": "gh-publish",
     "test": "pnpm -F='./example' test",
-    "typecheck": "tsc"
+    "typecheck": "pnpm '/typecheck:.*/'",
+    "typecheck:this": "tsc",
+    "typecheck:example": "pnpm -F='./example' typecheck"
   },
   "dependencies": {
     "@yamatomo/msw-server": "workspace:*"
@@ -38,7 +40,9 @@
     "msw": ">=2"
   },
   "devDependencies": {
+    "@playwright/test": "^1.59.1",
     "@yamatomo/gh-publish": "workspace:*",
-    "@yamatomo/internal-utils": "workspace:*"
+    "@yamatomo/internal-utils": "workspace:*",
+    "msw": "^2.13.4"
   }
 }
