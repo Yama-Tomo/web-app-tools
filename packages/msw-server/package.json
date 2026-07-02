@@ -1,6 +1,6 @@
 {
   "name": "@yamatomo/msw-server",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Utilities to run MSW as a standalone server",
   "keywords": [],
   "license": "MIT",
