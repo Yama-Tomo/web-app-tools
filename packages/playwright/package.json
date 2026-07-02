@@ -40,9 +40,9 @@
     "msw": ">=2"
   },
   "devDependencies": {
-    "@playwright/test": "^1.59.1",
+    "@playwright/test": "^1.61.1",
     "@yamatomo/gh-publish": "workspace:*",
     "@yamatomo/internal-utils": "workspace:*",
-    "msw": "^2.13.4"
+    "msw": "^2.14.6"
   }
 }

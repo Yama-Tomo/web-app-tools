@@ -14,7 +14,7 @@ const getRecipeName = (
   if (!variable) return null
 
   const def = variable.defs[0]
-  if (!def || def.type !== 'ImportBinding') return null
+  if (def?.type !== 'ImportBinding') return null
 
   const importDecl = def.parent
   const isImportRecipe =
