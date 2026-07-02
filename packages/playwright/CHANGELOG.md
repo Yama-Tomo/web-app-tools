@@ -1,5 +1,12 @@
 # @yamatomo/playwright
 
+## 0.2.1
+
+### Patch Changes
+
+- Updated dependencies [[`6a4d3fe`](https://github.com/Yama-Tomo/web-app-tools/commit/6a4d3fe37be51fc9576a4c3b411f8c1178d875bd)]:
+  - @yamatomo/msw-server@0.1.1
+
 ## 0.2.0
 
 ### Minor Changes
