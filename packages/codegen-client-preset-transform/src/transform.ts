@@ -150,5 +150,5 @@ export const transform = (
 transform.optionsDefault = optionsDefault
 
 export declare namespace transform {
-  export type { Options, Artifact }
+  export type { Artifact, Options }
 }

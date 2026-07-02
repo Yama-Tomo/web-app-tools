@@ -20,14 +20,14 @@
     }
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.4.12",
-    "@changesets/changelog-github": "^0.6.0",
+    "@biomejs/biome": "^2.5.2",
+    "@changesets/changelog-github": "^0.7.0",
     "@changesets/cli": "^2.31.0",
-    "@types/node": "^25.6.0",
-    "@vitest/coverage-v8": "^4.1.4",
-    "tsdown": "^0.21.9",
-    "tsx": "^4.21.0",
+    "@types/node": "^26.1.0",
+    "@vitest/coverage-v8": "^4.1.9",
+    "tsdown": "^0.22.3",
+    "tsx": "^4.22.4",
     "typescript": "^6.0.3",
-    "vitest": "^4.1.4"
+    "vitest": "^4.1.9"
   }
 }
