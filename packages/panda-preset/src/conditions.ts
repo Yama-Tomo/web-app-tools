@@ -1,3 +1,6 @@
+const notFirst = '&:not(:first-child)'
+const notLast = '&:not(:last-child)'
+
 export const conditions = {
   dark: '.dark &',
   /**
@@ -5,13 +8,13 @@ export const conditions = {
    * (i.e. not the last child). Useful for adding spacing
    * or borders between siblings.
    */
-  hasNextSibling: '&:not(:last-child)',
+  hasNextSibling: notLast,
   /**
    * Matches any element that has a previous sibling
    * (i.e. not the first child). Useful for adding spacing
    * or borders between siblings.
    */
-  hasPreviousSibling: '&:not(:first-child)',
+  hasPreviousSibling: notFirst,
   /**
    * Matches interactive elements on hover,
    * but ignores disabled / aria-disabled controls.
@@ -21,5 +24,7 @@ export const conditions = {
   light: '.light &',
   menuItemCheckbox: '&[role=menuitemcheckbox]',
   menuItemRadio: '&[role=menuitemradio]',
+  notFirst,
+  notLast,
   webkitScrollbar: '&::-webkit-scrollbar',
 } as const

@@ -10,6 +10,7 @@ import { baseUIRadio } from './baseUIRadio'
 import { baseUIScrollArea } from './baseUIScrollArea'
 import { baseUISelect } from './baseUISelect'
 import { baseUISwitch } from './baseUISwitch'
+import { baseUITabs } from './baseUITabs'
 import { baseUIToast } from './baseUIToast'
 import { baseUITooltip } from './baseUITooltip'
 import { popoverArrow } from './popoverArrow'
@@ -33,6 +34,7 @@ export const slotRecipes = {
   baseUIScrollArea,
   baseUISelect,
   baseUISwitch,
+  baseUITabs,
   baseUIToast,
   baseUITooltip,
 }
