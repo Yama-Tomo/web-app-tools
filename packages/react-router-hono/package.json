@@ -39,7 +39,7 @@
     "typecheck:example-bun": "bun --cwd examples/bun typecheck"
   },
   "dependencies": {
-    "@hono/node-server": "^2.0.6",
+    "@hono/node-server": "^2.0.10",
     "hono": "^4.12.27",
     "hono-react-router-adapter": "^0.6.5"
   },
