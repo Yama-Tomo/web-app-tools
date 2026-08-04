@@ -40,7 +40,7 @@
   },
   "dependencies": {
     "@hono/node-server": "^2.0.6",
-    "hono": "^4.12.27",
+    "hono": "^4.12.34",
     "hono-react-router-adapter": "^0.6.5"
   },
   "devDependencies": {
